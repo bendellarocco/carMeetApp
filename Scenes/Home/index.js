@@ -1,8 +1,5 @@
 'use strict';
 
-var MEET_DATA = [
-  {name: "Pre-Winter Mode Meet", date: "November 8th 2015", time: "4:00", banner: {main: ('http://farm9.staticflickr.com/8227/8531521317_a63d3e5f7c_b.jpg')}}
-];
 
 var React = require('react-native');
 var Firebase = require('firebase');
@@ -12,6 +9,8 @@ var {
   View,
   Dimensions
 } = React;
+
+var Banner = require('./banner');
 
 var HomeScene = React.createClass({
   getInitialState: function() {
@@ -36,17 +35,18 @@ var HomeScene = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        {this.state.loading ? <Text>... loading</Text> : <Text>Our next meet is {this.state.data.date}</Text>}
+        <Banner></Banner>
       </View>
     );
   }
 });
 
 var styles = StyleSheet.create({
-  container: {
+    container: {
+    marginTop: 20,
     flex: 1,
-    marginTop: 50
-  }
+    backgroundColor: 'Black',
+  },
 });
 
 module.exports = HomeScene;
