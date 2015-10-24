@@ -5,6 +5,7 @@ var MEET_DATA = [
 ];
 
 var React = require('react-native');
+var Firebase = require('firebase');
 var {
   StyleSheet,
   Text,
@@ -13,10 +14,29 @@ var {
 } = React;
 
 var HomeScene = React.createClass({
+  getInitialState: function() {
+    return {
+      loading: true,
+      data: {}
+    };
+  },
+
+  componentDidMount: function() {
+    const ref = new Firebase('https://blazing-inferno-7802.firebaseio.com/event');
+
+    ref.on('value', function(snapshot) {
+      this.setState(Object.assign(this.state, {
+        loading: false,
+        data: snapshot.val()
+      }));
+    }.bind(this), function (errorObject) {
+
+    });
+  },
   render: function() {
     return (
       <View style={styles.container}>
-        <Text>Hello World</Text>
+        {this.state.loading ? <Text>... loading</Text> : <Text>Our next meet is {this.state.data.date}</Text>}
       </View>
     );
   }
@@ -24,7 +44,8 @@ var HomeScene = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    marginTop: 50
   }
 });
 
