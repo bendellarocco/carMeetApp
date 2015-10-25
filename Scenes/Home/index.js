@@ -11,6 +11,7 @@ var {
 } = React;
 
 var Banner = require('./banner');
+var Content = require('./content');
 
 var HomeScene = React.createClass({
   getInitialState: function() {
@@ -36,6 +37,7 @@ var HomeScene = React.createClass({
     return (
       <View style={styles.container}>
         <Banner></Banner>
+        <Content></Content>
       </View>
     );
   }
