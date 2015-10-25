@@ -41,29 +41,22 @@ var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
 var styles = StyleSheet.create({
   scrollView: {
     height: 175,
-    width: 175,
+    width: 183,
 
   },
   horizontalScrollView: {
-    height: 150,
+    height: 152,
   },
   containerPage: {
     height: 50,
     width: 50,
     backgroundColor: '#527FE4',
   },
-  text: {
-    fontSize: 20,
-    color: '#888888',
-    left: 80,
-    top: 20,
-    height: 40,
-  },
   button: {
     margin: 1,
     alignItems: 'center',
     backgroundColor: '#eaeaea',
-    borderRadius: 3,
+    borderRadius: 0,
   },
   buttonContents: {
     flexDirection: 'row',
@@ -71,8 +64,8 @@ var styles = StyleSheet.create({
     height: 64,
   },
   img: {
-    width: 175,
-    height: 148,
+    width: 183,
+    height: 150,
   }
 });
 

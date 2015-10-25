@@ -36,17 +36,19 @@ var Content = React.createClass ({
 
 var styles = StyleSheet.create ({
   content: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'black',
     flex: 2,
     position: 'relative',
-    padding: 1
+    padding: 0,
+    margin: 3,
+    marginTop: 0,
   },
 
   map: {
     flex: 1,
     width: (width / 2),
     position: 'absolute',
-    left:2,
+    left:1,
     padding: 1,
   },
 
@@ -54,9 +56,9 @@ var styles = StyleSheet.create ({
     flex: 1,
     width: (width / 2),
     position: 'absolute',
-    right:2,
+    right:1,
     padding: 1,
-    margin: 10,
+    margin: 2,
   },
 
 

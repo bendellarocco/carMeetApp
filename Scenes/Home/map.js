@@ -58,7 +58,7 @@ var Map = React.createClass({
  var styles = StyleSheet.create({
   map: {
     height: 150,
-    margin: 10,
+    margin: 3,
   },
 });
 

@@ -61,17 +61,20 @@ var Banner = React.createClass({
 
 var styles = StyleSheet.create({
 mainImageContainer: {
-    alignItems: 'stretch',
+    alignItems: 'center',
     position: 'relative',
     height: (height / 4),
-    backgroundColor: 'transparent',
+    backgroundColor: 'Black',
+    padding: 6,
+    margin: 3,
+    marginBottom: 0,
 
   },
   mainImage: {
     height: (height / 4),
-    width: width,
+    width: (width - 15),
     resizeMode: Image.resizeMode.ratio,
-    position: 'absolute',
+    position: 'relative',
     top: 0,
 
   },
@@ -82,6 +85,7 @@ mainImageContainer: {
     bottom: 0,
     left: 5,
     fontSize: 20,
+    backgroundColor: 'transparent',
 
   },
   date: {
@@ -91,6 +95,7 @@ mainImageContainer: {
     position: 'absolute',
     bottom: 5,
     right: 5,
+    backgroundColor: 'transparent',
   },
 
 });
