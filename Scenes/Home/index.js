@@ -12,6 +12,8 @@ var {
 
 var Banner = require('./banner');
 var Content = require('./content');
+var ProfileButton = require('./ProfileButton')
+var CalendarButton = require('./CalendarButton')
 
 var HomeScene = React.createClass({
   getInitialState: function() {
@@ -36,8 +38,12 @@ var HomeScene = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Banner></Banner>
-        <Content></Content>
+        <Banner />
+        <Content />
+      <View style={styles.navBar}>
+        <CalendarButton />
+        <ProfileButton />
+      </View>
       </View>
     );
   }
@@ -48,6 +54,10 @@ var styles = StyleSheet.create({
     marginTop: 20,
     flex: 1,
     backgroundColor: 'Black',
+  },
+
+  navBar: {
+    flexDirection: 'row'
   },
 });
 

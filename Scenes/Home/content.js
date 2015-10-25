@@ -22,16 +22,14 @@ var Content = React.createClass ({
 
 	render () {
 		return (
-		<View style={styles.content}>
-        <View style={styles.map}>
-          <Map>
-          </Map>
-        </View>
-        <View style={styles.carousel}>
-          <Scrolling>
-          </Scrolling>
-        </View>
-        </View>
+			<View style={styles.content}>
+        	<View style={styles.map}>
+          		<Map />
+        	</View>
+        	<View style={styles.carousel}>
+          		<Scrolling />
+        	</View>
+        	</View>
 		);
 	},
 });

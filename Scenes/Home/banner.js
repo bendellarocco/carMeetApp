@@ -54,7 +54,7 @@ var Banner = React.createClass({
           <Text style={styles.date}>
             {this.state.loading ? <Text>loading...</Text> : <Text>{this.state.data.date}</Text>}
           </Text>
-        </View>
+    </View>
     );
 	},
 });
@@ -77,6 +77,7 @@ mainImageContainer: {
   },
   name: {
     color: '#FFFFFF',
+    fontFamily: 'Avenir',
     position: 'absolute',
     bottom: 0,
     left: 5,
@@ -85,8 +86,10 @@ mainImageContainer: {
   },
   date: {
     color: '#FFFFFF',
+    fontFamily: 'Avenir',
+    fontSize: 14,
     position: 'absolute',
-    bottom: 0,
+    bottom: 5,
     right: 5,
   },
 
