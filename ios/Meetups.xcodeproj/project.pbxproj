@@ -22,6 +22,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		662EFB691BDEF2FB005CF879 /* libRNBackgroundGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662EFB651BDEF2DC005CF879 /* libRNBackgroundGeolocation.a */; };
+		662EFB6D1BDEF375005CF879 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 662EFB6C1BDEF375005CF879 /* libsqlite3.tbd */; };
+		662EFB6F1BDEF47A005CF879 /* TSLocationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662EFB6E1BDEF47A005CF879 /* TSLocationManager.framework */; };
 		6638B0621BDEA7DC0064F9AC /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6638B04C1BDEA7910064F9AC /* libRCTFBLogin.a */; };
 		6638B0871BDEA91A0064F9AC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6638B0861BDEA91A0064F9AC /* FBSDKCoreKit.framework */; };
 		6638B0891BDEA92E0064F9AC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6638B0881BDEA92E0064F9AC /* FBSDKLoginKit.framework */; };
@@ -93,6 +96,20 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		662EFB641BDEF2DC005CF879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 662EFB541BDEF2DC005CF879 /* RNBackgroundGeolocation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83FF5F851AFD0D2B0016A13E;
+			remoteInfo = RNBackgroundGeolocation;
+		};
+		662EFB661BDEF2DC005CF879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 662EFB541BDEF2DC005CF879 /* RNBackgroundGeolocation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83FF5F901AFD0D2B0016A13E;
+			remoteInfo = RNBackgroundGeolocationTests;
+		};
 		6638B04B1BDEA7910064F9AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6638B0461BDEA7910064F9AC /* RCTFBLogin.xcodeproj */;
@@ -143,6 +160,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Meetups/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Meetups/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		662EFB541BDEF2DC005CF879 /* RNBackgroundGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBackgroundGeolocation.xcodeproj; path = "../node_modules/react-native-background-geolocation/RNBackgroundGeolocation.xcodeproj"; sourceTree = "<group>"; };
+		662EFB6C1BDEF375005CF879 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		662EFB6E1BDEF47A005CF879 /* TSLocationManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TSLocationManager.framework; sourceTree = "<group>"; };
 		6638B0461BDEA7910064F9AC /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		6638B0861BDEA91A0064F9AC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		6638B0881BDEA92E0064F9AC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -163,6 +183,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				662EFB6D1BDEF375005CF879 /* libsqlite3.tbd in Frameworks */,
+				662EFB691BDEF2FB005CF879 /* libRNBackgroundGeolocation.a in Frameworks */,
 				6638B0901BDEAAEB0064F9AC /* libRNBlur.a in Frameworks */,
 				6638B0621BDEA7DC0064F9AC /* libRCTFBLogin.a in Frameworks */,
 				6638B0871BDEA91A0064F9AC /* FBSDKCoreKit.framework in Frameworks */,
@@ -170,6 +192,7 @@
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
+				662EFB6F1BDEF47A005CF879 /* TSLocationManager.framework in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				6638B0891BDEA92E0064F9AC /* FBSDKLoginKit.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
@@ -259,6 +282,7 @@
 		13B07FAE1A68108700A75B9A /* Meetups */ = {
 			isa = PBXGroup;
 			children = (
+				662EFB6E1BDEF47A005CF879 /* TSLocationManager.framework */,
 				6638B0881BDEA92E0064F9AC /* FBSDKLoginKit.framework */,
 				6638B0861BDEA91A0064F9AC /* FBSDKCoreKit.framework */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -276,6 +300,15 @@
 			isa = PBXGroup;
 			children = (
 				146834041AC3E56700842450 /* libReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		662EFB551BDEF2DC005CF879 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				662EFB651BDEF2DC005CF879 /* libRNBackgroundGeolocation.a */,
+				662EFB671BDEF2DC005CF879 /* RNBackgroundGeolocationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -307,6 +340,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				662EFB541BDEF2DC005CF879 /* RNBackgroundGeolocation.xcodeproj */,
 				6638B08A1BDEAAE10064F9AC /* RNBlur.xcodeproj */,
 				6638B0461BDEA7910064F9AC /* RCTFBLogin.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -334,6 +368,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				662EFB6C1BDEF375005CF879 /* libsqlite3.tbd */,
 				13B07FAE1A68108700A75B9A /* Meetups */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MeetupsTests */,
@@ -403,6 +438,13 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Meetups" */;
@@ -460,6 +502,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 662EFB551BDEF2DC005CF879 /* Products */;
+					ProjectRef = 662EFB541BDEF2DC005CF879 /* RNBackgroundGeolocation.xcodeproj */;
 				},
 				{
 					ProductGroup = 6638B08B1BDEAAE10064F9AC /* Products */;
@@ -529,6 +575,20 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		662EFB651BDEF2DC005CF879 /* libRNBackgroundGeolocation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBackgroundGeolocation.a;
+			remoteRef = 662EFB641BDEF2DC005CF879 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		662EFB671BDEF2DC005CF879 /* RNBackgroundGeolocationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RNBackgroundGeolocationTests.xctest;
+			remoteRef = 662EFB661BDEF2DC005CF879 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6638B04C1BDEA7910064F9AC /* libRCTFBLogin.a */ = {

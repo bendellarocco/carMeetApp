@@ -16,7 +16,6 @@ var CalendarButton = require('./CalendarButton')
 var EventStore = require('../../Stores/Event');
 
 var HomeScene = React.createClass({
-
   getInitialState() {
     return EventStore.getState();
   },
@@ -29,11 +28,12 @@ var HomeScene = React.createClass({
     EventStore.unlisten(this.onChange);
   },
 
-  onChange(state) {
-    this.setState(state);
+  onChange() {
+    this.setState(this.getInitialState());
   },
 
   render: function() {
+    console.log(this.state);
     return (
       <View style={styles.container}>
         <Banner {...this.state} />

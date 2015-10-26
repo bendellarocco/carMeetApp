@@ -10,7 +10,10 @@ var STORAGE_KEY = '@EventStore';
 
 class EventStore {
   constructor() {
-    this.data = {};
+    this.data = {
+      title: '',
+      date: ''
+    };
 
     this.bindListeners({
       handleLoad: EventActions.LOAD_EVENT
