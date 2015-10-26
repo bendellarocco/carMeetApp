@@ -9,37 +9,34 @@ var {
   View,
   Dimensions
 } = React;
-
 var Banner = require('./banner');
 var Content = require('./content');
 var ProfileButton = require('./ProfileButton')
 var CalendarButton = require('./CalendarButton')
+var EventStore = require('../../Stores/Event');
 
 var HomeScene = React.createClass({
-  getInitialState: function() {
-    return {
-      loading: true,
-      data: {}
-    };
+
+  getInitialState() {
+    return EventStore.getState();
   },
 
-  componentDidMount: function() {
-    const ref = new Firebase('https://blazing-inferno-7802.firebaseio.com/event');
+  componentDidMount() {
+    EventStore.listen(this.onChange);
+  },
 
-    ref.on('value', function(snapshot) {
-      this.setState(Object.assign(this.state, {
-        loading: false,
-        data: snapshot.val()
-      }));
-    }.bind(this), function (errorObject) {
+  componentWillUnmount() {
+    EventStore.unlisten(this.onChange);
+  },
 
-    });
+  onChange(state) {
+    this.setState(state);
   },
 
   render: function() {
     return (
       <View style={styles.container}>
-        <Banner />
+        <Banner {...this.state} />
 
       <View style={styles.navBar}>
         <CalendarButton />

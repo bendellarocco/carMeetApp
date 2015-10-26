@@ -16,8 +16,6 @@ var Scene = React.createClass({
 
   componentDidMount() {
     EventStore.listen(this.onChange);
-
-    EventActions.loadEvent({name: 'World'});
   },
 
   componentWillUnmount() {
@@ -31,7 +29,7 @@ var Scene = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Text>Hello: {this.state.data.name}</Text>
+        <Text>Hello: {this.state.title}</Text>
       </View>
     );
   }

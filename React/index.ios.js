@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var HomeScene = require('./Scenes/Dashboard');
+var HomeScene = require('./Scenes/Home');
 var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var {
   AppRegistry,
