@@ -10,13 +10,8 @@ var {
   Text,
   StyleSheet,
   View,
-  Dimensions,
 } = React;
 
-var {
-  width,
-  height,
-} = Dimensions.get('window');
 
 var Banner = React.createClass({
 
@@ -46,7 +41,7 @@ var Banner = React.createClass({
 		<View style={styles.mainImageContainer}>
           <Image
             style={styles.mainImage}
-            source={{uri: data.banner.main}}>
+            source={require('image!banner')}>
           </Image>
           <Text style={styles.name}>
             {this.state.loading ? <Text>loading...</Text> : <Text>{this.state.data.title}</Text>}
@@ -63,17 +58,13 @@ var styles = StyleSheet.create({
 mainImageContainer: {
     alignItems: 'center',
     position: 'relative',
-    height: (height / 4),
+    height: 135,
     backgroundColor: 'Black',
-    padding: 6,
-    margin: 3,
     marginBottom: 0,
-
   },
   mainImage: {
-    height: (height / 4),
-    width: (width - 15),
-    resizeMode: Image.resizeMode.ratio,
+    height: 135,
+    width: 378,
     position: 'relative',
     top: 0,
 
@@ -93,7 +84,7 @@ mainImageContainer: {
     fontFamily: 'Avenir',
     fontSize: 14,
     position: 'absolute',
-    bottom: 5,
+    bottom: 3,
     right: 5,
     backgroundColor: 'transparent',
   },

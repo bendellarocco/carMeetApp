@@ -19,7 +19,6 @@ var Map = require('./map');
 var Scrolling = require('./scrollView');
 
 var Content = React.createClass ({
-
 	render () {
 		return (
 			<View style={styles.content}>
@@ -27,7 +26,7 @@ var Content = React.createClass ({
           		<Map />
         	</View>
         	<View style={styles.carousel}>
-          		<Scrolling />
+          		
         	</View>
         	</View>
 		);
@@ -40,23 +39,23 @@ var styles = StyleSheet.create ({
     flex: 2,
     position: 'relative',
     padding: 0,
-    margin: 3,
     marginTop: 0,
+    padding: 5,
   },
 
   map: {
     flex: 1,
-    width: (width / 2),
+    width: 165,
     position: 'absolute',
-    left:1,
-    padding: 1,
+    right:1,
+    marginRight: 5,
   },
 
   carousel: {
     flex: 1,
     width: (width / 2),
     position: 'absolute',
-    right:1,
+    left:1,
     padding: 1,
     margin: 2,
   },
