@@ -30,13 +30,16 @@ var LoginScene = React.createClass({
   },
 
   componentDidMount: function() {
-    Animated.timing(
-      this.state.pan,
-      {
-        easing: Easing.elastic(1),
-        toValue: 1
-      }
-    ).start();
+    Animated.sequence([
+      Animated.delay(500),
+      Animated.timing(
+        this.state.pan,
+        {
+          easing: Easing.elastic(1),
+          toValue: 1
+        }
+      )
+    ]).start();
   },
 
   render: function() {

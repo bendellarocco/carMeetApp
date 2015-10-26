@@ -100,26 +100,17 @@ module.exports = function (Component) {
     },
 
     render: function() {
-      if (this.state.loading) {
-        return (
-          <View style={styles.container}>
-            <Image source={require('image!login')} style={styles.backgroundImage} />
-          </View>
-        );
-      }
-      else {
-        return (
-          <View style={styles.container}>
-            <Modal
-              animated={true}
-              transparent={true}
-              visible={this.state.user === null}>
-              <LoginScene />
-            </Modal>
-            <Component {...this.props} user={this.state.user} />
-          </View>
-        );
-      }
+      return (
+        <View style={styles.container}>
+          <Modal
+            animated={true}
+            transparent={true}
+            visible={this.state.user === null && !this.state.loading}>
+            <LoginScene />
+          </Modal>
+          <Component {...this.props} user={this.state.user} />
+        </View>
+      );
     }
   });
 

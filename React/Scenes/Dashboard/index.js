@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var EventStore = require('../../Stores/Event');
+var EventActions = require('../../Actions/Event');
 var {
   StyleSheet,
   Text,
@@ -8,10 +10,28 @@ var {
 } = React;
 
 var Scene = React.createClass({
+  getInitialState() {
+    return EventStore.getState();
+  },
+
+  componentDidMount() {
+    EventStore.listen(this.onChange);
+
+    EventActions.loadEvent({name: 'World'});
+  },
+
+  componentWillUnmount() {
+    EventStore.unlisten(this.onChange);
+  },
+
+  onChange(state) {
+    this.setState(state);
+  },
+
   render: function() {
     return (
       <View style={styles.container}>
-        <Text>Hello World</Text>
+        <Text>Hello: {this.state.data.name}</Text>
       </View>
     );
   }
