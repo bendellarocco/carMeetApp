@@ -68,35 +68,35 @@ module.exports = function (Component) {
     },
 
     onLogin: function(data) {
-      console.log('login', data);
+      //console.log('login', data);
       this.setState(Object.assign(this.state, {user: data}));
     },
 
     onLogout: function() {
-      console.log('logout');
+      //console.log('logout');
       this.setState(Object.assign(this.state, {user: null}));
     },
 
     onLoginFound: function(data) {
-      console.log('loginFound', data);
+      //console.log('loginFound', data);
       this.setState(Object.assign(this.state, {user: data}));
     },
 
     onLoginNotFound: function() {
-      console.log('loginNotFound');
+      //console.log('loginNotFound');
       this.setState(Object.assign(this.state, {user: null}));
     },
 
     onError: function(data) {
-      console.log('loginError');
+      //console.log('loginError');
     },
 
     onCancel: function() {
-      console.log('loginCancel');
+      //console.log('loginCancel');
     },
 
     onPermissionsMissing: function() {
-      console.log('loginPermissionsMissing');
+      //console.log('loginPermissionsMissing');
     },
 
     render: function() {

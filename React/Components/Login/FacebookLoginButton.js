@@ -20,6 +20,7 @@ var FacebookLoginButton = React.createClass({
 
     }.bind(this));
   },
+
   render: function() {
     console.log(this.state);
     return (

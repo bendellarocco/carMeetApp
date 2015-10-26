@@ -14,7 +14,6 @@ var Banner = require('./banner');
 var Content = require('./content');
 var ProfileButton = require('./ProfileButton')
 var CalendarButton = require('./CalendarButton')
-var RestrictedComponent = require('../../Mixins/RestrictedComponent');
 
 var HomeScene = React.createClass({
   getInitialState: function() {
@@ -36,11 +35,12 @@ var HomeScene = React.createClass({
 
     });
   },
+
   render: function() {
     return (
       <View style={styles.container}>
         <Banner />
-        <Content />
+
       <View style={styles.navBar}>
         <CalendarButton />
         <ProfileButton />
@@ -61,4 +61,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = RestrictedComponent(HomeScene);
+module.exports = HomeScene;

@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var HomeScene = require('./Scenes/Home');
+var HomeScene = require('./Scenes/Dashboard');
+var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var {
   AppRegistry,
   StyleSheet,
@@ -37,4 +38,4 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('Meetups', () => Meetups);
+AppRegistry.registerComponent('Meetups', () => RestrictedComponent(Meetups));

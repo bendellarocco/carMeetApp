@@ -24,31 +24,21 @@ var LoginScene = React.createClass({
       pan: new Animated.Value(0)
     }
   },
+
   componentWillMount: function(){
 
   },
+
   componentDidMount: function() {
-    FBLoginManager.getCredentials(function(error, data){
-      if (!error) {
-        this.handleLogin(data);
+    Animated.timing(
+      this.state.pan,
+      {
+        easing: Easing.elastic(1),
+        toValue: 1
       }
-      else {
-        console.log('LoginError', error);
-        Animated.timing(
-          this.state.pan,
-          {
-            easing: Easing.elastic(1),
-            toValue: 1
-          }
-        ).start();
-      }
-    }.bind(this));
+    ).start();
   },
-  handleLogin: function(userData) {
-    this.props.navigator.replace({
-      component: HomeScene,
-    });
-  },
+
   render: function() {
     return (
       <View style={styles.container}>
