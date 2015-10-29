@@ -61,14 +61,14 @@ var styles = StyleSheet.create({
     height: 152,
   },
   containerPage: {
-    height: 50,
-    width: 50,
-    backgroundColor: '#527FE4',
+    height: 125,
+    width: 125,
+    backgroundColor: 'white',
   },
   button: {
     margin: 1,
     alignItems: 'center',
-    backgroundColor: '#eaeaea',
+    backgroundColor: 'white',
     borderRadius: 0,
   },
   buttonContents: {
@@ -79,6 +79,7 @@ var styles = StyleSheet.create({
   img: {
     width: 125,
     height: 125,
+    marginLeft: 10,
   },
   hashtag: {
     color: '#737373',

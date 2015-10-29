@@ -15,7 +15,7 @@ var GuestInfo = React.createClass ({
 	render () {
 		return (
 			<View style={styles.guestArea}>
-        <Text style={styles.date}>{this.props.date}</Text>
+        <Text style={styles.date}>this is the guest info section yada yada yada</Text>
 			</View>
 
 		);
@@ -25,7 +25,7 @@ var GuestInfo = React.createClass ({
 var styles = StyleSheet.create({
 
 	guestArea: {
-		backgroundColor: 'red',
+		backgroundColor: 'white',
 	},
 
 	icon: {

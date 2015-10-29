@@ -21,8 +21,8 @@ var ProfileButton = React.createClass({
       <View style={styles.container}>
         <TouchableWithoutFeedback style={styles.container} onPress={this.handleLogout}>
           <View style={styles.container}>
-            <Text style={styles.text}>profile</Text>
-            <Image source={require('image!profile')} style={styles.icon} />
+            <Image source={require('image!calendar')} style={styles.icon} />
+            <Text style={styles.text}>Join</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -43,12 +43,12 @@ var styles = StyleSheet.create({
   icon: {
     backgroundColor: 'transparent',
     marginTop: -2,
-    marginLeft: 10
+    marginRight: 10
   },
   text: {
     color: '#FFFFFF',
     fontFamily: 'Avenir',
-    fontSize: 18
+    fontSize: 20
   }
 });
 
