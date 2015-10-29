@@ -50,21 +50,21 @@ var styles = StyleSheet.create ({
 
   description: {
     flex: 1,
-    width: 375,
-    height: 370,
+    width: 378,
+    height: 375,
   },
 
   guestArea: {
     flex: 1,
     width: 378,
-    height:370,
+    height:375,
     marginRight: 5,
   },
 
   carousel: {
     flex: 1,
     width: 365,
-    height:370,
+    height:375,
     padding: 1,
     margin: 3,
   },

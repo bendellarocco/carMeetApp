@@ -77,8 +77,8 @@ var styles = StyleSheet.create({
     height: 64,
   },
   img: {
-    width: 100,
-    height: 100,
+    width: 125,
+    height: 125,
   },
   hashtag: {
     color: '#737373',

@@ -27,12 +27,12 @@ var styles = StyleSheet.create({
   mainImageContainer: {
     alignItems: 'center',
     position: 'relative',
-    height: 135,
+    height: 173,
     backgroundColor: 'white',
     marginBottom: 0
   },
   mainImage: {
-    height: 135,
+    height: 173,
     width: 378,
     position: 'relative',
     top: 0
