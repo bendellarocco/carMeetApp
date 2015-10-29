@@ -19,9 +19,6 @@ var Banner = React.createClass({
         <Text style={styles.name}>
           {this.props.title}
         </Text>
-        <Text style={styles.date}>
-          {this.props.date}
-        </Text>
       </View>
     );
 	},
@@ -32,7 +29,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
     height: 135,
-    backgroundColor: 'Black',
+    backgroundColor: 'white',
     marginBottom: 0
   },
   mainImage: {
