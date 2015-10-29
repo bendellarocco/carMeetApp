@@ -17,7 +17,6 @@ var Banner = React.createClass({
           source={require('image!banner')}>
         </Image>
         <Text style={styles.name}>
-          {this.props.title}
         </Text>
       </View>
     );
@@ -45,17 +44,10 @@ var styles = StyleSheet.create({
     bottom: 0,
     left: 5,
     fontSize: 20,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    fontWeight: '800'
   },
-  date: {
-    color: '#FFFFFF',
-    fontFamily: 'Avenir',
-    fontSize: 14,
-    position: 'absolute',
-    bottom: 3,
-    right: 5,
-    backgroundColor: 'transparent'
-  }
+
 });
 
 module.exports = Banner;

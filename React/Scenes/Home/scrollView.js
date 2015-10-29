@@ -5,18 +5,24 @@ var {
   ScrollView,
   StyleSheet,
   View,
-  Image
+  Image,
+  Text,
 } = React;
 
 var Scrolling = React.createClass({
   render: function() {
     return (
-      <ScrollView
-        automaticallyAdjustContentInsets={false}
-        horizontal={true}
-        style={[styles.scrollView, styles.horizontalScrollView]}>
-        {THUMBS.map(createThumbRow)}
-      </ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.hashtag}>
+          {this.props.hashtag}
+        </Text>
+        <ScrollView
+          automaticallyAdjustContentInsets={false}
+          horizontal={true}
+          style={[styles.scrollView, styles.horizontalScrollView]}>
+          {THUMBS.map(createThumbRow)}
+        </ScrollView>
+      </View>
     );
   }
 });
@@ -39,9 +45,16 @@ THUMBS = THUMBS.concat(THUMBS); // double length of THUMBSt39.1997/p128x128/8515
 var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
 
 var styles = StyleSheet.create({
+
+  container: {
+    backgroundColor: 'white',
+    borderStyle: 'solid',
+    borderColor: '#00A4C5',
+  },
+
   scrollView: {
     height: 175,
-    width: 183,
+    width: 365,
 
   },
   horizontalScrollView: {
@@ -64,9 +77,15 @@ var styles = StyleSheet.create({
     height: 64,
   },
   img: {
-    width: 183,
-    height: 150,
-  }
+    width: 100,
+    height: 100,
+  },
+  hashtag: {
+    color: '#737373',
+    fontFamily: 'Avenir',
+    fontSize: 14,
+    fontWeight: "300"
+  },
 });
 
 module.exports = Scrolling

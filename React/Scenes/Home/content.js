@@ -14,50 +14,59 @@ var {
   height,
 } = Dimensions.get('window');
 
-var Map = require('./map');
-
+var Description = require('./description');
 var Scrolling = require('./scrollView');
+var GuestInfo = require('./guestInfo');
 
 var Content = React.createClass ({
 	render () {
 		return (
 			<View style={styles.content}>
-        	<View style={styles.map}>
-          		<Map />
+          <View style={styles.description}>
+              <Description {...this.props}/>
+          </View>
+        	<View style={styles.guestArea}>
+          		<GuestInfo {...this.props}/>
         	</View>
-        	<View style={styles.carousel}>
-          		
-        	</View>
-        	</View>
+          <View style={styles.carousel}>
+              <Scrolling {...this.props}/>
+          </View>
+        </View>
 		);
-	},
+	}
 });
 
 var styles = StyleSheet.create ({
+
   content: {
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     flex: 2,
-    position: 'relative',
     padding: 0,
     marginTop: 0,
     padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
-  map: {
+  description: {
     flex: 1,
-    width: 165,
-    position: 'absolute',
-    right:1,
+    width: 375,
+    height: 370,
+  },
+
+  guestArea: {
+    flex: 1,
+    width: 378,
+    height:370,
     marginRight: 5,
   },
 
   carousel: {
     flex: 1,
-    width: (width / 2),
-    position: 'absolute',
-    left:1,
+    width: 365,
+    height:370,
     padding: 1,
-    margin: 2,
+    margin: 3,
   },
 
 

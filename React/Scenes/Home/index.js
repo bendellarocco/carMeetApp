@@ -37,9 +37,8 @@ var HomeScene = React.createClass({
     return (
       <View style={styles.container}>
         <Banner {...this.state} />
-
+        <Content {...this.state} />
       <View style={styles.navBar}>
-        <CalendarButton />
         <ProfileButton />
       </View>
       </View>
@@ -50,12 +49,17 @@ var HomeScene = React.createClass({
 var styles = StyleSheet.create({
     container: {
     flex: 1,
-    backgroundColor: 'White',
+    backgroundColor: 'white',
   },
 
   navBar: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
+
+  scrollingBar: {
+    backgroundColor: 'white',
+  },
+  
 });
 
 module.exports = HomeScene;
