@@ -1,6 +1,5 @@
 'use strict';
 
-
 var React = require('react-native');
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var FBLoginManager = require('NativeModules').FBLoginManager;
@@ -35,36 +34,37 @@ module.exports = function (Component) {
     },
 
     componentWillMount: function(){
-      var subscriptions = this.state.subscriptions;
-
-      Object.keys(FBLoginManager.Events).forEach(function(event) {
-        subscriptions.push(RCTDeviceEventEmitter.addListener(
-          FBLoginManager.Events[event],
-          function(eventData) {
-            var eventHandler = this['on' + event];
-            eventHandler && eventHandler(eventData);
-          }.bind(this)
-        ));
-      }.bind(this));
-
-      this.setState(Object.assign(this.state, {subscriptions : subscriptions}));
+      // var subscriptions = this.state.subscriptions;
+      //
+      // Object.keys(FBLoginManager.Events).forEach(function(event) {
+      //   subscriptions.push(RCTDeviceEventEmitter.addListener(
+      //     FBLoginManager.Events[event],
+      //     function(eventData) {
+      //       var eventHandler = this['on' + event];
+      //       eventHandler && eventHandler(eventData);
+      //     }.bind(this)
+      //   ));
+      // }.bind(this));
+      //
+      // this.setState(Object.assign(this.state, {subscriptions : subscriptions}));
     },
 
     componentWillUnmount: function(){
-      var subscriptions = this.state.subscriptions;
-      subscriptions.forEach(function(subscription){
-        subscription.remove();
-      });
+      // var subscriptions = this.state.subscriptions;
+      // subscriptions.forEach(function(subscription){
+      //   subscription.remove();
+      // });
     },
 
     componentDidMount: function(){
-      FBLoginManager.getCredentials(function(err, data) {
-        if (!err) {
-          this.setState(Object.assign(this.state, {user: data, loading: false}));
-        } else {
-          this.setState(Object.assign(this.state, {loading: false, user: null}));
-        }
-      }.bind(this));
+      // FBLoginManager.getCredentials(function(err, data) {
+      //   if (!err) {
+      //     this.setState(Object.assign(this.state, {user: data, loading: false}));
+      //   } else {
+      //     this.setState(Object.assign(this.state, {loading: false, user: null}));
+      //   }
+      // }.bind(this));
+       this.setState(Object.assign(this.state, {loading: false, user: {id: 1, name: 'Adam'}}));
     },
 
     onLogin: function(data) {
@@ -116,4 +116,3 @@ module.exports = function (Component) {
 
   return AuthComponent;
 };
-

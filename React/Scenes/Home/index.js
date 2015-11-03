@@ -2,7 +2,6 @@
 
 
 var React = require('react-native');
-var Firebase = require('firebase');
 var {
   StyleSheet,
   Text,
@@ -13,6 +12,7 @@ var Banner = require('./banner');
 var Content = require('./content');
 var ProfileButton = require('./ProfileButton')
 var CalendarButton = require('./CalendarButton')
+var Map = require('./Map');
 var EventStore = require('../../Stores/Event');
 
 var HomeScene = React.createClass({
@@ -36,7 +36,7 @@ var HomeScene = React.createClass({
     return (
       <View style={styles.container}>
         <Banner {...this.state} />
-        <Content {...this.state} />
+        <Map />
       <View style={styles.navBar}>
         <ProfileButton />
       </View>
