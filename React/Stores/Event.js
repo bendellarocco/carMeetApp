@@ -7,6 +7,7 @@ var {
 } = React;
 
 var STORAGE_KEY = '@EventStore';
+var ref = Firebase.child('event');
 
 class EventStore {
   constructor() {
@@ -19,13 +20,16 @@ class EventStore {
       handleLoad: EventActions.LOAD_EVENT
     });
 
+    this.exportPublicMethods({
+      addGoing: this.addGoing
+    });
+
     AsyncStorage.getItem(STORAGE_KEY, function(err, data) {
       if (!err && data) {
         EventActions.loadEvent(JSON.parse(data));
       }
     });
 
-    var ref = Firebase.child('event');
     ref.on('value', function(snapshot) {
       var data = snapshot.val();
       EventActions.loadEvent(data);
@@ -35,6 +39,10 @@ class EventStore {
 
   handleLoad(data) {
     this.data = data;
+  }
+
+  addGoing(user) {
+    
   }
 }
 
