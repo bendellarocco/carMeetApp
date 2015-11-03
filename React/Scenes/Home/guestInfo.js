@@ -29,11 +29,8 @@ var styles = StyleSheet.create({
 	},
 
 	icon: {
-    	height: 16,
-    	width: 16,
-    	position: 'absolute',
-    	right: 6,
-    	top: 0,
+    	height: 50,
+    	width: 50,
     	marginTop: 3,
   	},
 

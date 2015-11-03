@@ -51,14 +51,16 @@ var styles = StyleSheet.create ({
   description: {
     flex: 1,
     width: 378,
-    height: 375,
+    height: 500,
+    backgroundColor: "green"
   },
 
   guestArea: {
     flex: 1,
     width: 378,
-    height:375,
+    height:275,
     marginRight: 5,
+    backgroundColor: "red"
   },
 
   carousel: {

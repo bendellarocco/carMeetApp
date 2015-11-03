@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var FBLoginManager = require('NativeModules').FBLoginManager;
 var EventAction = require('../../Actions/Event');
 var {
   StyleSheet,
@@ -11,12 +10,7 @@ var {
   TouchableWithoutFeedback
 } = React;
 
-var ProfileButton = React.createClass({
-  handleLogout: function() {
-    FBLoginManager.logout(function(error, data){
-
-    });
-  },
+var JoinButton = React.createClass({
   handleGoing: function() {
     EventAction.addGoing({name: 'adam', age: 25});
   },
@@ -56,4 +50,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = ProfileButton;
+module.exports = JoinButton;

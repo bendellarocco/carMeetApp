@@ -4,6 +4,7 @@ var Firebase = require('../firebase');
 var ref = Firebase.child('event').child('going');
 
 class EventActions {
+
   loadEvent(data) {
     this.dispatch(data);
   }
