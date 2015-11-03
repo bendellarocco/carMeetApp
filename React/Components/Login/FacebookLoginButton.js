@@ -22,7 +22,6 @@ var FacebookLoginButton = React.createClass({
   },
 
   render: function() {
-    console.log(this.state);
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback style={styles.container} onPress={this.handleLogin}>

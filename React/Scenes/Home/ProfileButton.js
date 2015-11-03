@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var FBLoginManager = require('NativeModules').FBLoginManager;
+var EventAction = require('../../Actions/Event');
 var {
   StyleSheet,
   Text,
@@ -16,10 +17,13 @@ var ProfileButton = React.createClass({
 
     });
   },
+  handleGoing: function() {
+    EventAction.addGoing({name: 'adam', age: 25});
+  },
   render: function() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback style={styles.container} onPress={this.handleLogout}>
+        <TouchableWithoutFeedback style={styles.container} onPress={this.handleGoing}>
           <View style={styles.container}>
             <Image source={require('image!calendar')} style={styles.icon} />
             <Text style={styles.text}>Join</Text>

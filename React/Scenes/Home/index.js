@@ -33,7 +33,6 @@ var HomeScene = React.createClass({
   },
 
   render: function() {
-    console.log(this.state);
     return (
       <View style={styles.container}>
         <Banner {...this.state} />
@@ -59,7 +58,7 @@ var styles = StyleSheet.create({
   scrollingBar: {
     backgroundColor: 'white',
   },
-  
+
 });
 
 module.exports = HomeScene;

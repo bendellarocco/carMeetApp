@@ -20,17 +20,13 @@ class EventStore {
       handleLoad: EventActions.LOAD_EVENT
     });
 
-    this.exportPublicMethods({
-      addGoing: this.addGoing
-    });
-
     AsyncStorage.getItem(STORAGE_KEY, function(err, data) {
       if (!err && data) {
         EventActions.loadEvent(JSON.parse(data));
       }
     });
 
-    ref.on('value', function(snapshot) {
+    ref.on('value', (snapshot) => {
       var data = snapshot.val();
       EventActions.loadEvent(data);
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -38,11 +34,8 @@ class EventStore {
   }
 
   handleLoad(data) {
+    console.log('handle load', data);
     this.data = data;
-  }
-
-  addGoing(user) {
-    
   }
 }
 
