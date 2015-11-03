@@ -78,7 +78,6 @@ var Meetups = React.createClass({
   },
 
   render: function() {
-    console.log(this.state);
     return (
       <View style={styles.container}>
         <Navigator

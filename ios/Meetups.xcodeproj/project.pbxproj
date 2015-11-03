@@ -29,6 +29,17 @@
 		6638B0871BDEA91A0064F9AC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6638B0861BDEA91A0064F9AC /* FBSDKCoreKit.framework */; };
 		6638B0891BDEA92E0064F9AC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6638B0881BDEA92E0064F9AC /* FBSDKLoginKit.framework */; };
 		6638B0901BDEAAEB0064F9AC /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6638B08F1BDEAAE10064F9AC /* libRNBlur.a */; };
+		6666DA2E1BE973BA00798EBA /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A33B6F1BE9600A009C60BC /* libRCTMapboxGL.a */; };
+		6666DA3D1BE973FE00798EBA /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6666DA3C1BE973FE00798EBA /* Mapbox.bundle */; };
+		6666DA3F1BE9741F00798EBA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6666DA3E1BE9741F00798EBA /* Settings.bundle */; };
+		6666DA411BE9743800798EBA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA401BE9743800798EBA /* CoreTelephony.framework */; };
+		6666DA431BE9743F00798EBA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA421BE9743F00798EBA /* GLKit.framework */; };
+		6666DA451BE9744500798EBA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA441BE9744500798EBA /* ImageIO.framework */; };
+		6666DA471BE9744C00798EBA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA461BE9744C00798EBA /* MobileCoreServices.framework */; };
+		6666DA491BE9745100798EBA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA481BE9745100798EBA /* QuartzCore.framework */; };
+		6666DA4B1BE9745B00798EBA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA4A1BE9745B00798EBA /* SystemConfiguration.framework */; };
+		6666DA4D1BE9746700798EBA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA4C1BE9746700798EBA /* libc++.tbd */; };
+		6666DA4F1BE9747800798EBA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6666DA4E1BE9747800798EBA /* libz.tbd */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +192,16 @@
 		6638B0861BDEA91A0064F9AC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		6638B0881BDEA92E0064F9AC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		6638B08A1BDEAAE10064F9AC /* RNBlur.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
+		6666DA3C1BE973FE00798EBA /* Mapbox.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Mapbox.bundle; sourceTree = "<group>"; };
+		6666DA3E1BE9741F00798EBA /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		6666DA401BE9743800798EBA /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6666DA421BE9743F00798EBA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		6666DA441BE9744500798EBA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		6666DA461BE9744C00798EBA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6666DA481BE9745100798EBA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6666DA4A1BE9745B00798EBA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6666DA4C1BE9746700798EBA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		6666DA4E1BE9747800798EBA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		66A33B641BE9600A009C60BC /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -198,7 +219,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6666DA4F1BE9747800798EBA /* libz.tbd in Frameworks */,
 				662EFB6D1BDEF375005CF879 /* libsqlite3.tbd in Frameworks */,
+				6666DA4D1BE9746700798EBA /* libc++.tbd in Frameworks */,
+				6666DA4B1BE9745B00798EBA /* SystemConfiguration.framework in Frameworks */,
+				6666DA491BE9745100798EBA /* QuartzCore.framework in Frameworks */,
+				6666DA471BE9744C00798EBA /* MobileCoreServices.framework in Frameworks */,
+				6666DA451BE9744500798EBA /* ImageIO.framework in Frameworks */,
+				6666DA431BE9743F00798EBA /* GLKit.framework in Frameworks */,
+				6666DA411BE9743800798EBA /* CoreTelephony.framework in Frameworks */,
+				6666DA2E1BE973BA00798EBA /* libRCTMapboxGL.a in Frameworks */,
 				662EFB691BDEF2FB005CF879 /* libRNBackgroundGeolocation.a in Frameworks */,
 				6638B0901BDEAAEB0064F9AC /* libRNBlur.a in Frameworks */,
 				6638B0621BDEA7DC0064F9AC /* libRCTFBLogin.a in Frameworks */,
@@ -393,6 +423,16 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				6666DA4E1BE9747800798EBA /* libz.tbd */,
+				6666DA4C1BE9746700798EBA /* libc++.tbd */,
+				6666DA4A1BE9745B00798EBA /* SystemConfiguration.framework */,
+				6666DA481BE9745100798EBA /* QuartzCore.framework */,
+				6666DA461BE9744C00798EBA /* MobileCoreServices.framework */,
+				6666DA441BE9744500798EBA /* ImageIO.framework */,
+				6666DA421BE9743F00798EBA /* GLKit.framework */,
+				6666DA401BE9743800798EBA /* CoreTelephony.framework */,
+				6666DA3E1BE9741F00798EBA /* Settings.bundle */,
+				6666DA3C1BE973FE00798EBA /* Mapbox.bundle */,
 				662EFB6C1BDEF375005CF879 /* libsqlite3.tbd */,
 				13B07FAE1A68108700A75B9A /* Meetups */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -676,6 +716,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6666DA3F1BE9741F00798EBA /* Settings.bundle in Resources */,
+				6666DA3D1BE973FE00798EBA /* Mapbox.bundle in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
