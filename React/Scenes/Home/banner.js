@@ -12,9 +12,10 @@ var Banner = React.createClass({
 	render() {
     return (
 		  <View style={styles.mainImageContainer}>
+
         <Image
           style={styles.mainImage}
-          source={require('image!banner')}>
+          source={{uri: this.props.banner}}>
         </Image>
         <Text style={styles.name}>
         </Text>
