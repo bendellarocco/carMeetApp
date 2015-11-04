@@ -36,7 +36,7 @@ class UserStore {
 }
 
 
-EventStore.config = {
+UserStore.config = {
   getState: function(state) {
     return state.data;
   }

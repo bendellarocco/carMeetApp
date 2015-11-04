@@ -5,8 +5,8 @@ var React = require('react-native');
 var Firebase = require('firebase');
 var InstagramStore = require('../../Stores/Instagram');
 
-var THUMBS = ['http://www.spencer1984.com/image/m348c.jpg', 'http://tearstone.com/grid/wp-content/uploads/2007/10/P1000110s-175x150.jpg', 'https://wetshinedotnet.files.wordpress.com/2007/10/59-subaru.jpg?w=175&h=150&crop=1'];
-var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
+//var THUMBS = ['http://www.spencer1984.com/image/m348c.jpg', 'http://tearstone.com/grid/wp-content/uploads/2007/10/P1000110s-175x150.jpg', 'https://wetshinedotnet.files.wordpress.com/2007/10/59-subaru.jpg?w=175&h=150&crop=1'];
+//var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
 
 var {
   ScrollView,
@@ -42,11 +42,12 @@ var Scrolling = React.createClass({
 
 
   render: function() {
-    var response = this.state.instagram.meetups;
+    var response = this.state.instagram.meetup;
     var keys = _.keys(response);
     var count = keys.length;
 
-    var thumbs = _.map(this.state.instagram.meetups, this.renderThumb);
+    var thumbs = _.map(response, this.renderThumb);
+    thumbs.reverse();
 
     return (
       <View style={styles.container}>
@@ -90,7 +91,7 @@ var styles = StyleSheet.create({
   scrollView: {
     height: 175,
     width: 365,
-
+    
   },
   horizontalScrollView: {
     height: 152,
@@ -110,11 +111,13 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     width: 64,
     height: 64,
+
   },
   img: {
     width: 125,
     height: 125,
     marginLeft: 10,
+
   },
   hashtag: {
     color: '#737373',

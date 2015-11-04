@@ -1,6 +1,9 @@
 'use strict';
 
 var React = require('react-native');
+var _ = require('lodash');
+var UserStore = require('../../Stores/User');
+var Firebase = require('firebase');
 
 var {
   Image,
@@ -12,10 +15,33 @@ var {
 
 var GuestInfo = React.createClass ({
 
-	render () {
-		return (
+getInitialState() {
+    return {
+      user:UserStore.getState()
+    }
+  },
+
+  componentDidMount() {
+    UserStore.listen(this.onChange);
+  },
+
+  componentWillUnmount() {
+    UserStore.unlisten(this.onChange);
+  },
+
+  onChange() {
+    this.setState(this.getInitialState());
+  },
+
+
+	render: function () {
+    var response = this.props.going;
+    var keys = _.keys(response);
+    var attending = keys.length;
+    return (
 			<View style={styles.guestArea}>
         <Text style={styles.date}>this is the guest info section yada yada yada</Text>
+        <Text style={styles.date}>Going: {attending}</Text>
 			</View>
 
 		);
