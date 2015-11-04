@@ -40,7 +40,7 @@ var styles = StyleSheet.create ({
 
   content: {
     backgroundColor: 'white',
-    flex: 2,
+    flex: 4,
     padding: 0,
     marginTop: 0,
     padding: 5,
@@ -49,18 +49,18 @@ var styles = StyleSheet.create ({
   },
 
   description: {
-    flex: 1,
+    flex: 2,
     width: 378,
-    height: 500,
+    height: 450,
     backgroundColor: "white"
   },
 
   guestArea: {
     flex: 1,
     width: 378,
-    height:275,
-    marginRight: 5,
-    backgroundColor: "white"
+    height:325,
+    backgroundColor: "white",
+
   },
 
   carousel: {
@@ -69,6 +69,7 @@ var styles = StyleSheet.create ({
     height:375,
     padding: 1,
     margin: 3,
+    marginBottom: 45,
   },
 
 

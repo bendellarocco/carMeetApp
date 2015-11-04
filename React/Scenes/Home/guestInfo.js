@@ -40,8 +40,11 @@ getInitialState() {
     var attending = keys.length;
     return (
 			<View style={styles.guestArea}>
-        <Text style={styles.date}>this is the guest info section yada yada yada</Text>
-        <Text style={styles.date}>Going: {attending}</Text>
+      <View style={styles.go}>
+        <Text style={styles.attending}>{attending}</Text>
+        <Text style={styles.going}>going</Text>
+      </View>
+        <Text style={styles.vAll}>view all</Text>
 			</View>
 
 		);
@@ -52,22 +55,42 @@ var styles = StyleSheet.create({
 
 	guestArea: {
 		backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
 	},
 
-	icon: {
-    	height: 50,
-    	width: 50,
-    	marginTop: 3,
-  	},
-
-  	date: {
+  	going: {
+      flex: 2,
     	color: '#ABABAB',
     	fontFamily: 'Avenir',
-    	fontSize: 12,
-    	marginRight: 26,
-    	marginTop: 3,
+    	fontSize: 14,
+    	marginLeft: 26,
     	fontWeight: '700',
-    	textAlign: 'right',
+  },
+
+    attending: {
+      flex:2,
+      color: '#ABABAB',
+      fontFamily: 'Avenir',
+      fontSize: 32,
+      marginLeft: 26,
+      fontWeight: '800',
+      
+  },
+
+    vAll: {
+      flex:1,
+      fontSize: 14,
+      marginRight: 26,
+      fontWeight: '700',
+      textAlign: 'right',
+      color: '#ABABAB',
+      fontFamily: 'Avenir',
+  },
+
+  go: {
+    textAlign: 'left',
+
   },
 
 

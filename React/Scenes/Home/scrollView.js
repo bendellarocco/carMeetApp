@@ -123,7 +123,7 @@ var styles = StyleSheet.create({
     color: '#737373',
     fontFamily: 'Avenir',
     fontSize: 14,
-    fontWeight: "300"
+    fontWeight: "700"
   },
 });
 
