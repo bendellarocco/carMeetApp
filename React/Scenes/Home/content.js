@@ -23,13 +23,13 @@ var Content = React.createClass ({
 		return (
 			<View style={styles.content}>
           <View style={styles.description}>
-              <Description {...this.props}/>
+              <Description {...this.props.event}/>
           </View>
         	<View style={styles.guestArea}>
-          		<GuestInfo {...this.props}/>
+          		<GuestInfo {...this.props.event}/>
         	</View>
           <View style={styles.carousel}>
-              <Scrolling {...this.props}/>
+              <Scrolling {...this.props.event} />
           </View>
         </View>
 		);
@@ -52,7 +52,7 @@ var styles = StyleSheet.create ({
     flex: 1,
     width: 378,
     height: 500,
-    backgroundColor: "green"
+    backgroundColor: "white"
   },
 
   guestArea: {
@@ -60,7 +60,7 @@ var styles = StyleSheet.create ({
     width: 378,
     height:275,
     marginRight: 5,
-    backgroundColor: "red"
+    backgroundColor: "white"
   },
 
   carousel: {

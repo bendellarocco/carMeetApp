@@ -34,7 +34,7 @@ class EventStore {
   }
 
   handleLoad(data) {
-    console.log('handle load', data);
+    //console.log('handle load', data);
     this.data = data;
   }
 }

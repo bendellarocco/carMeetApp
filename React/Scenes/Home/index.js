@@ -13,13 +13,11 @@ var Banner = require('./banner');
 var Content = require('./content');
 var JoinButton = require('./JoinButton')
 var EventStore = require('../../Stores/Event');
-var InstagramStore = require('../../Stores/Instagram');
 
 var HomeScene = React.createClass({
   getInitialState() {
     return {
       event:EventStore.getState(),
-      instagram:InstagramStore.getState()
     }
   },
 
@@ -39,7 +37,7 @@ var HomeScene = React.createClass({
     return (
       <View style={styles.container}>
         <Banner {...this.state.event} />
-        <Content {...this.state.event} instagram={this.state.instagram} />
+        <Content {...this.state} />
       <View style={styles.navBar}>
         <JoinButton />
       </View>

@@ -1,7 +1,9 @@
 'use strict';
 
+var _ = require('lodash');
 var React = require('react-native');
-var EventAction = require('../../Actions/Event');
+var Firebase = require('firebase');
+var InstagramStore = require('../../Stores/Instagram');
 
 var THUMBS = ['http://www.spencer1984.com/image/m348c.jpg', 'http://tearstone.com/grid/wp-content/uploads/2007/10/P1000110s-175x150.jpg', 'https://wetshinedotnet.files.wordpress.com/2007/10/59-subaru.jpg?w=175&h=150&crop=1'];
 var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
@@ -15,22 +17,51 @@ var {
 } = React;
 
 var Scrolling = React.createClass({
+
+  getInitialState() {
+    return {
+      instagram:InstagramStore.getState()
+    }
+  },
+
+  componentDidMount() {
+    InstagramStore.listen(this.onChange);
+  },
+
+  componentWillUnmount() {
+    InstagramStore.unlisten(this.onChange);
+  },
+
+  onChange() {
+    this.setState(this.getInitialState());
+  },
+
+  renderThumb(image) {
+    return <Thumb uri={image.image} />;
+  },
+
+
   render: function() {
+    var response = this.state.instagram.meetups;
+    var keys = _.keys(response);
+    var count = keys.length;
+
+    var thumbs = _.map(this.state.instagram.meetups, this.renderThumb);
+
     return (
       <View style={styles.container}>
         <Text style={styles.hashtag}>
-          {this.props.hashtag}
+          {this.props.hashtag} {count}
         </Text>
         <ScrollView
           automaticallyAdjustContentInsets={false}
           horizontal={true}
           style={[styles.scrollView, styles.horizontalScrollView]}>
-          {THUMBS.map(createThumbRow)}
+          {thumbs}
         </ScrollView>
       </View>
     );
   },
-
 });
 
 var Thumb = React.createClass({
@@ -45,6 +76,8 @@ var Thumb = React.createClass({
     );
   }
 });
+
+
 
 var styles = StyleSheet.create({
 
