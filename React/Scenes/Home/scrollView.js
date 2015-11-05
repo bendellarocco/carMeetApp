@@ -42,8 +42,9 @@ var Scrolling = React.createClass({
 
   onChange() {
     var ig = InstagramStore.getState()
-    var thumbs = _.values(ig.meetup).slice(0, 50);
+    var thumbs = _.values(ig.meetup);
     var count = thumbs.length;
+    thumbs = thumbs.slice((count -50), count)
     thumbs.reverse();
     this.setState({
       count: count,
