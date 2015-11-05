@@ -21,14 +21,15 @@ var {
 
 var Scrolling = React.createClass({
 
-  getInitialState() {
+  getInitialState: function() {
     return {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1.id !== row2.id,
+
       }),
       loaded: false,
-      count: 0
-    }
+      count: 0,
+    };
   },
 
   componentDidMount() {
@@ -41,14 +42,13 @@ var Scrolling = React.createClass({
 
   onChange() {
     var ig = InstagramStore.getState()
-    var thumbs = _.values(ig.meetup).slice(0, 5);
+    var thumbs = _.values(ig.meetup).slice(0, 50);
     var count = thumbs.length;
     thumbs.reverse();
-    console.log(thumbs);
     this.setState({
       count: count,
+      dataSource: this.state.dataSource.cloneWithRows(thumbs),
       loaded: true,
-      dataSource: this.state.dataSource.cloneWithRows(thumbs)
     });
   },
 
@@ -110,35 +110,36 @@ var Thumb = React.createClass({
 var styles = StyleSheet.create({
 
   container: {
-    backgroundColor: 'white',
+
     borderStyle: 'solid',
     borderColor: '#00A4C5',
+    backgroundColor: '#E0E0E0',
   },
 
   scrollView: {
     flex:1,
-    height: 650,
+    height: 540,
   },
   containerPage: {
     height: 500,
-    width: 500,
-    backgroundColor: 'green',
+    width: 340,
   },
   button: {
     margin: 1,
     alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 0,
+    
+    padding: 5,
   },
   buttonContents: {
     flexDirection: 'row',
-    width: 64,
+    width: 340,
     height: 64,
 
   },
   img: {
     width: 340,
     height: 340,
+
   },
   hashtag: {
     color: '#737373',

@@ -9,6 +9,7 @@ var {
   Dimensions,
   Animated,
   Easing,
+  TouchableWithoutFeedback,
 } = React;
 
 var {
@@ -20,6 +21,7 @@ var Description = require('./description');
 var Scrolling = require('./scrollView');
 var GuestInfo = require('./guestInfo');
 
+
 var Content = React.createClass ({
   getInitialState: function() {
     return {
@@ -27,9 +29,8 @@ var Content = React.createClass ({
     }
   },
 
-  componentDidMount: function() {
+  expandInstagram: function() {
     Animated.sequence([
-      Animated.delay(500),
       Animated.timing(
         this.state.pan,
         {
@@ -40,15 +41,21 @@ var Content = React.createClass ({
     ]).start();
   },
 
+  componentDidMount: function() {
+
+  },
+
 	render () {
 		return (
 			<View style={styles.content}>
           <View style={styles.description}>
               <Description {...this.props.event}/>
           </View>
+          <TouchableWithoutFeedback onPress={this.expandInstagram}>
         	<View style={styles.guestArea}>
           		<GuestInfo {...this.props.event}/>
         	</View>
+                      </TouchableWithoutFeedback>
           <Animated.View style={{
             width: 365,
             height:this.state.pan.interpolate({
@@ -57,9 +64,12 @@ var Content = React.createClass ({
             }),
               padding: 1,
             margin: 3,
+            marginBottom: 10,
            }}>
               <Scrolling {...this.props.event} />
+             
           </Animated.View>
+          
         </View>
 		);
 	}
@@ -88,8 +98,6 @@ var styles = StyleSheet.create ({
     flex: 1,
     width: 378,
     height:325,
-    backgroundColor: "white",
-
   },
 
   carousel: {
