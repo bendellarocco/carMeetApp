@@ -25,14 +25,14 @@ var GuestInfo = require('./guestInfo');
 var Content = React.createClass ({
   getInitialState: function() {
     return {
-      pan: new Animated.Value(0)
+      instagram: new Animated.Value(0)
     }
   },
 
   expandInstagram: function() {
     Animated.sequence([
       Animated.timing(
-        this.state.pan,
+        this.state.instagram,
         {
           easing: Easing.elastic(1),
           toValue: 1
@@ -49,27 +49,28 @@ var Content = React.createClass ({
 		return (
 			<View style={styles.content}>
           <View style={styles.description}>
-              <Description {...this.props.event}/>
+            <Description {...this.props.event}/>
           </View>
-          <TouchableWithoutFeedback onPress={this.expandInstagram}>
         	<View style={styles.guestArea}>
-          		<GuestInfo {...this.props.event}/>
+          	<GuestInfo {...this.props.event}/>
         	</View>
-                      </TouchableWithoutFeedback>
           <Animated.View style={{
             width: 365,
-            height:this.state.pan.interpolate({
+            height:this.state.instagram.interpolate({
               inputRange: [0, 1],
-              outputRange: [0, 800]
+              outputRange: [0, 380]
             }),
               padding: 1,
             margin: 3,
             marginBottom: 10,
            }}>
-              <Scrolling {...this.props.event} />
-             
+            <TouchableWithoutFeedback onPress={this.expandInstagram}>
+              <Text style={styles.hashtag}>
+                  {this.props.event.hashtag}
+              </Text>
+            </TouchableWithoutFeedback>
+            <Scrolling {...this.props.event} />
           </Animated.View>
-          
         </View>
 		);
 	}
@@ -109,6 +110,12 @@ var styles = StyleSheet.create ({
     marginBottom: 75,
   },
 
+    hashtag: {
+    color: '#737373',
+    fontFamily: 'Avenir',
+    fontSize: 14,
+    fontWeight: "700"
+  },
 
 });
 

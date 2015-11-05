@@ -60,7 +60,7 @@ var Scrolling = React.createClass({
     return (
       <View style={styles.container}>
         <Text>
-          Loading movies...
+          Loading Instagram...
         </Text>
       </View>
     );
@@ -73,9 +73,7 @@ var Scrolling = React.createClass({
 
     return (
       <View style={styles.container}>
-        <Text style={styles.hashtag}>
-          {this.props.hashtag}
-        </Text>
+        
         <ListView
           style={styles.scrollView}
           dataSource={this.state.dataSource}
