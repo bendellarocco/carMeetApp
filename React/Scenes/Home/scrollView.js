@@ -24,7 +24,7 @@ var Scrolling = React.createClass({
   getInitialState() {
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => row1.id !== row2.id,
       }),
       loaded: false,
       count: 0
@@ -41,11 +41,10 @@ var Scrolling = React.createClass({
 
   onChange() {
     var ig = InstagramStore.getState()
-    var keys = _.keys(ig.meetup);
-    var count = keys.length;
-    var thumbs = _.map(ig, (image) => _.values(image));
+    var thumbs = _.values(ig.meetup).slice(0, 5);
+    var count = thumbs.length;
     thumbs.reverse();
-
+    console.log(thumbs);
     this.setState({
       count: count,
       loaded: true,
@@ -54,7 +53,7 @@ var Scrolling = React.createClass({
   },
 
   renderThumb(image) {
-    return <Thumb uri={image.image} />;
+    return <span>Thumb</span>;
   },
 
   renderLoadingView: function() {
@@ -72,17 +71,20 @@ var Scrolling = React.createClass({
       return this.renderLoadingView();
     }
 
-
     return (
       <View style={styles.container}>
         <Text style={styles.hashtag}>
           {this.props.hashtag}
         </Text>
         <ListView
-          style={[styles.scrollView, styles.horizontalScrollView]}>
+          style={styles.scrollView}
           dataSource={this.state.dataSource}
-          renderRow={this.renderThumb}
-        </ListView>
+          renderRow={(image) => {
+            return (
+              <Thumb uri={image.image} />
+            );
+          }}
+        />
       </View>
     );
   },
@@ -115,10 +117,6 @@ var styles = StyleSheet.create({
 
   scrollView: {
     flex:1,
-
-    
-  },
-  horizontalScrollView: {
     height: 650,
   },
   containerPage: {

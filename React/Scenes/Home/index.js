@@ -15,6 +15,11 @@ var JoinButton = require('./JoinButton')
 var EventStore = require('../../Stores/Event');
 
 var HomeScene = React.createClass({
+  // mixins: [
+  //   FirebaseModel(Firebase, {
+  //     stream: 'instagram/meetup'
+  //   })
+  // ],
   getInitialState() {
     return {
       event:EventStore.getState(),
