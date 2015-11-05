@@ -7,6 +7,8 @@ var {
   StyleSheet,
   View,
   Dimensions,
+  Animated,
+  Easing,
 } = React;
 
 var {
@@ -19,6 +21,25 @@ var Scrolling = require('./scrollView');
 var GuestInfo = require('./guestInfo');
 
 var Content = React.createClass ({
+  getInitialState: function() {
+    return {
+      pan: new Animated.Value(0)
+    }
+  },
+
+  componentDidMount: function() {
+    Animated.sequence([
+      Animated.delay(500),
+      Animated.timing(
+        this.state.pan,
+        {
+          easing: Easing.elastic(1),
+          toValue: 1
+        }
+      )
+    ]).start();
+  },
+
 	render () {
 		return (
 			<View style={styles.content}>
@@ -28,9 +49,17 @@ var Content = React.createClass ({
         	<View style={styles.guestArea}>
           		<GuestInfo {...this.props.event}/>
         	</View>
-          <View style={styles.carousel}>
+          <Animated.View style={{
+            width: 365,
+            height:this.state.pan.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 800]
+            }),
+              padding: 1,
+            margin: 3,
+           }}>
               <Scrolling {...this.props.event} />
-          </View>
+          </Animated.View>
         </View>
 		);
 	}
@@ -69,7 +98,7 @@ var styles = StyleSheet.create ({
     height:375,
     padding: 1,
     margin: 3,
-    marginBottom: 45,
+    marginBottom: 75,
   },
 
 

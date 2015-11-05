@@ -5,6 +5,8 @@ var React = require('react-native');
 var Firebase = require('firebase');
 var InstagramStore = require('../../Stores/Instagram');
 
+
+
 //var THUMBS = ['http://www.spencer1984.com/image/m348c.jpg', 'http://tearstone.com/grid/wp-content/uploads/2007/10/P1000110s-175x150.jpg', 'https://wetshinedotnet.files.wordpress.com/2007/10/59-subaru.jpg?w=175&h=150&crop=1'];
 //var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
 
@@ -14,13 +16,18 @@ var {
   View,
   Image,
   Text,
+  ListView,
 } = React;
 
 var Scrolling = React.createClass({
 
   getInitialState() {
     return {
-      instagram:InstagramStore.getState()
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
+      loaded: false,
+      count: 0
     }
   },
 
@@ -33,37 +40,55 @@ var Scrolling = React.createClass({
   },
 
   onChange() {
-    this.setState(this.getInitialState());
+    var ig = InstagramStore.getState()
+    var keys = _.keys(ig.meetup);
+    var count = keys.length;
+    var thumbs = _.map(ig, (image) => _.values(image));
+    thumbs.reverse();
+
+    this.setState({
+      count: count,
+      loaded: true,
+      dataSource: this.state.dataSource.cloneWithRows(thumbs)
+    });
   },
 
   renderThumb(image) {
     return <Thumb uri={image.image} />;
   },
 
+  renderLoadingView: function() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading movies...
+        </Text>
+      </View>
+    );
+  },
 
   render: function() {
-    var response = this.state.instagram.meetup;
-    var keys = _.keys(response);
-    var count = keys.length;
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
 
-    var thumbs = _.map(response, this.renderThumb);
-    thumbs.reverse();
 
     return (
       <View style={styles.container}>
         <Text style={styles.hashtag}>
-          {this.props.hashtag} {count}
+          {this.props.hashtag}
         </Text>
-        <ScrollView
-          automaticallyAdjustContentInsets={false}
-          horizontal={true}
+        <ListView
           style={[styles.scrollView, styles.horizontalScrollView]}>
-          {thumbs}
-        </ScrollView>
+          dataSource={this.state.dataSource}
+          renderRow={this.renderThumb}
+        </ListView>
       </View>
     );
   },
 });
+
+
 
 var Thumb = React.createClass({
   shouldComponentUpdate: function(nextProps, nextState) {
@@ -89,17 +114,17 @@ var styles = StyleSheet.create({
   },
 
   scrollView: {
-    height: 175,
-    width: 365,
+    flex:1,
+
     
   },
   horizontalScrollView: {
-    height: 152,
+    height: 650,
   },
   containerPage: {
-    height: 125,
-    width: 125,
-    backgroundColor: 'white',
+    height: 500,
+    width: 500,
+    backgroundColor: 'green',
   },
   button: {
     margin: 1,
@@ -114,10 +139,8 @@ var styles = StyleSheet.create({
 
   },
   img: {
-    width: 125,
-    height: 125,
-    marginLeft: 10,
-
+    width: 340,
+    height: 340,
   },
   hashtag: {
     color: '#737373',
