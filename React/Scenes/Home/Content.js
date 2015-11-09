@@ -52,23 +52,6 @@ var Content = React.createClass ({
         	<View style={styles.guestArea}>
           	<GuestInfo {...this.props.event}/>
         	</View>
-          <Animated.View style={{
-            width: width,
-            height:this.state.instagram.interpolate({
-              inputRange: [0, 1],
-              outputRange: [100, 380]
-            }),
-            padding: 1,
-            margin: 3,
-            marginBottom: 10,
-           }}>
-            <TouchableWithoutFeedback onPress={this.expandInstagram}>
-              <Text style={styles.hashtag}>
-                  {this.props.event.hashtag}
-              </Text>
-            </TouchableWithoutFeedback>
-            <Scrolling {...this.props.event} />
-          </Animated.View>
         </View>
 		);
 	}
@@ -98,12 +81,6 @@ var styles = StyleSheet.create ({
     height: (height * .48),
   },
 
-    hashtag: {
-    color: '#737373',
-    fontFamily: 'Avenir',
-    fontSize: 14,
-    fontWeight: "700"
-  }
 });
 
 module.exports = Content;
