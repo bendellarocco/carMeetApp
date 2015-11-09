@@ -18,7 +18,6 @@ var Banner = React.createClass({
 	render() {
     return (
 		  <View style={styles.mainImageContainer}>
-
         <Image
           style={styles.mainImage}
           source={{uri: this.props.image}}>
@@ -27,7 +26,7 @@ var Banner = React.createClass({
         </Text>
       </View>
     );
-	},
+	}
 });
 
 var styles = StyleSheet.create({
@@ -38,12 +37,14 @@ var styles = StyleSheet.create({
     backgroundColor: 'white',
     marginBottom: 0
   },
+
   mainImage: {
     height: (height * .25),
     width: width,
     position: 'relative',
     top: 0
   },
+
   name: {
     color: '#FFFFFF',
     fontFamily: 'Avenir',
@@ -53,8 +54,7 @@ var styles = StyleSheet.create({
     fontSize: 20,
     backgroundColor: 'transparent',
     fontWeight: '800'
-  },
-
+  }
 });
 
 module.exports = Banner;

@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+
 var {
   StyleSheet,
   Text,
@@ -29,11 +30,13 @@ var styles = StyleSheet.create({
     backgroundColor: '#D2915F',
     height: 40
   },
+
   icon: {
     backgroundColor: 'transparent',
     marginTop: -2,
     marginRight: 10
   },
+  
   text: {
     color: '#FFFFFF',
     fontFamily: 'Avenir',

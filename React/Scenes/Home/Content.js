@@ -21,7 +21,6 @@ var Description = require('./Description');
 var Scrolling = require('./ScrollView');
 var GuestInfo = require('./GuestInfo');
 
-
 var Content = React.createClass ({
   getInitialState: function() {
     return {
@@ -43,8 +42,6 @@ var Content = React.createClass ({
 
     this.setState(Object.assign(this.state, {instagramExpanded: !this.state.instagramExpanded}))
   },
-
-
 
 	render () {
 		return (
@@ -78,7 +75,6 @@ var Content = React.createClass ({
 });
 
 var styles = StyleSheet.create ({
-
   content: {
     backgroundColor: 'white',
     flex: 4,
@@ -107,8 +103,7 @@ var styles = StyleSheet.create ({
     fontFamily: 'Avenir',
     fontSize: 14,
     fontWeight: "700"
-  },
-
+  }
 });
 
 module.exports = Content;

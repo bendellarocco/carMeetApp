@@ -16,6 +16,7 @@ var JoinButton = React.createClass({
   handleGoing: function() {
     // EventAction.addGoing({name: 'adam', age: 25});
   },
+
   render: function() {
     return (
       <View style={styles.container}>
@@ -39,6 +40,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#00A4C5',
     height: 40
   },
+  
   text: {
     color: '#FFFFFF',
     fontFamily: 'Avenir',

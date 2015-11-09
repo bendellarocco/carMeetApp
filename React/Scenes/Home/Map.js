@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var Mapbox = require('react-native-mapbox-gl');
-var mapRef = 'mapRef';
+
 var {
   AppRegistry,
   StyleSheet,
@@ -10,6 +10,8 @@ var {
   StatusBarIOS,
   View
 } = React;
+
+var mapRef = 'mapRef';
 
 var MapExample = React.createClass({
   mixins: [Mapbox.Mixin],
@@ -85,7 +87,7 @@ var MapExample = React.createClass({
   onRightAnnotationTapped(e) {
     console.log(e);
   },
-  
+
   render: function() {
     StatusBarIOS.setHidden(true);
     return (

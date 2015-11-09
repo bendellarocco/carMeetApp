@@ -20,11 +20,10 @@ var Description = React.createClass({
 });
 
 var styles = StyleSheet.create({
-
 	container: {
 		backgroundColor: 'white',
 		borderStyle: 'solid',
-    	borderColor: '#00A4C5',
+    borderColor: '#00A4C5',
 	},
 
 	date: {
