@@ -71,7 +71,6 @@ var Scrolling = React.createClass({
           style={styles.scrollView}
           dataSource={this.state.dataSource}
           renderRow={(image) => {
-            console.log(image);
             return (
               <Thumb image={image.image} icon={image.user.profile_picture} username={image.user.username}/>
             );

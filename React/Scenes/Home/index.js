@@ -63,7 +63,7 @@ var HomeScene = React.createClass({
 
     return (
       <View style={styles.container}>
-        <Banner image={this.state.event.image} />
+        <Banner image={this.state.event.banner} />
         <Content event={this.state.event} />
         <Animated.View style={{
             width: width,
@@ -83,7 +83,7 @@ var HomeScene = React.createClass({
             <Scrolling {...this.state.event} />
           </Animated.View>
         <View style={styles.navBar}>
-          <JoinButton />
+          <JoinButton firebase={this.refs.event.child('going')} />
         </View>
       </View>
     );
