@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var {values} = require('lodash');
+
 var {
   ScrollView,
   StyleSheet,
@@ -10,6 +12,7 @@ var {
   ListView,
   Dimensions,
 } = React;
+
 var FirebaseModel = require('../../Mixins/FirebaseModel');
 
 var {
@@ -20,7 +23,7 @@ var {
 var Scrolling = React.createClass({
   mixins: [
     FirebaseModel(require('../../firebase'), {
-      stream: 'instagram/meetup'
+      stream: 'instagram/nefocus'
     })
   ],
 
@@ -35,14 +38,15 @@ var Scrolling = React.createClass({
 
   handleRefValue(snapshot) {
     var count = snapshot.numChildren();
-    var thumbs = _.values(snapshot.val().nefocus);
+    var thumbs = values(snapshot.val());
 
     thumbs = thumbs.slice((count - 50), count);
     thumbs.reverse();
 
     this.setState({
       count: count,
-      dataSource: this.state.dataSource.cloneWithRows(thumbs)
+      dataSource: this.state.dataSource.cloneWithRows(thumbs),
+      loaded: true
     });
   },
 
@@ -67,6 +71,7 @@ var Scrolling = React.createClass({
           style={styles.scrollView}
           dataSource={this.state.dataSource}
           renderRow={(image) => {
+            console.log(image);
             return (
               <Thumb image={image.image} icon={image.user.profile_picture} username={image.user.username}/>
             );
@@ -128,12 +133,7 @@ var styles = StyleSheet.create({
   button: {
     margin: 1,
     alignItems: 'center',
-<<<<<<< 8e062443151d02265e6a83ed4a30fc68ab51ab9d
     paddingBottom: 5,
-=======
-
-    padding: 5,
->>>>>>> firebase model
   },
   buttonContents: {
     flexDirection: 'row',
