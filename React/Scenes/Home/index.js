@@ -1,8 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var ReactFireMixin = require('reactfire');
-var _ = require('lodash');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var {
   StyleSheet,
@@ -20,19 +19,11 @@ var {
   height,
 } = Dimensions.get('window');
 
-var Firebase = require('../../firebase');
-var Banner = require('./Banner');
 var Event = require('./Event');
 var Scrolling = require('./ScrollView');
 var JoinButton = require('./JoinButton')
 
 var HomeScene = React.createClass({
-  mixins: [ReactFireMixin],
-
-  componentWillMount: function() {
-    this.bindAsObject(Firebase.child('event'), 'event');
-  },
-
   getInitialState: function() {
     return {
       instagram: new Animated.Value(0),
@@ -55,18 +46,11 @@ var HomeScene = React.createClass({
   },
 
   render: function() {
-    if (_.isNull(this.state) || _.isUndefined(this.state.event)) {
-      return (
-        <View style={styles.container}>
-          <Text>Loading</Text>
-        </View>
-      );
-    }
+    console.log('Scenes/Home', 'render');
 
-    return (
+  return (
       <View style={styles.container}>
-        <Banner image={this.state.event.banner} />
-        <Event event={this.state.event} />
+        <Event />
         <Animated.View style={{
           width: width,
           height:this.state.instagram.interpolate({
@@ -79,10 +63,10 @@ var HomeScene = React.createClass({
         }}>
           <TouchableWithoutFeedback onPress={this.expandInstagram}>
             <Text style={styles.hashtag}>
-              {this.state.event.hashtag}
+              #NeFocusPrewinterMeet
             </Text>
           </TouchableWithoutFeedback>
-          <Scrolling {...this.state.event} />
+          <Scrolling />
         </Animated.View>
         <View style={styles.navBar}>
           <JoinButton />
@@ -93,7 +77,7 @@ var HomeScene = React.createClass({
 });
 
 var styles = StyleSheet.create({
-    container: {
+  container: {
     flex: 1,
     backgroundColor: 'white',
   },

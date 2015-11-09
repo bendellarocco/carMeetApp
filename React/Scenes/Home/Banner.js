@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
+
 var {
   Image,
   Text,
@@ -15,7 +17,11 @@ var {
 } = Dimensions.get('window');
 
 var Banner = React.createClass({
+  mixins: [PureRenderMixin],
+  
 	render() {
+    console.log('Scenes/Home/Banner', 'render');
+
     return (
 		  <View style={styles.mainImageContainer}>
         <Image

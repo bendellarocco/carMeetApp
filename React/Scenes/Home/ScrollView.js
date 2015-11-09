@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 var ReactFireMixin = require('reactfire');
 var _ = require('lodash');
 
@@ -43,6 +44,8 @@ var Scrolling = React.createClass({
   },
 
   render: function() {
+    console.log('Scenes/Home/ScrollView', 'render');
+
     if (_.isNull(this.state) || _.isUndefined(this.state.stream)) {
       return this.renderLoadingView();
     }
@@ -135,7 +138,6 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir',
     fontSize: 14,
     fontWeight: "700",
-    textAlign: 'right',
     marginLeft: 5,
     marginTop: 5,
   },

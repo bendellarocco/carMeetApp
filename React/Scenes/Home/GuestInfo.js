@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 var _ = require('lodash');
 
 var {
@@ -19,25 +20,11 @@ var {
 var UserStore = require('../../Stores/User');
 
 var GuestInfo = React.createClass ({
-  getInitialState() {
-    return {
-      user:UserStore.getState()
-    }
-  },
-
-  componentDidMount() {
-    UserStore.listen(this.onChange);
-  },
-
-  componentWillUnmount() {
-    UserStore.unlisten(this.onChange);
-  },
-
-  onChange() {
-    this.setState(this.getInitialState());
-  },
+  mixins: [PureRenderMixin],
 
 	render: function () {
+    console.log('Scenes/Home/GuestInfo', 'render');
+
     var response = this.props.going;
     var keys = _.keys(response);
     var attending = keys.length;

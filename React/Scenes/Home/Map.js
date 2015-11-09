@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 var Mapbox = require('react-native-mapbox-gl');
 
 var {
@@ -14,7 +15,7 @@ var {
 var mapRef = 'mapRef';
 
 var MapExample = React.createClass({
-  mixins: [Mapbox.Mixin],
+  mixins: [Mapbox.Mixin, PureRenderMixin],
 
   getInitialState() {
     return {
@@ -89,6 +90,7 @@ var MapExample = React.createClass({
   },
 
   render: function() {
+    console.log('Scenes/Home/Map', 'render');
     StatusBarIOS.setHidden(true);
     return (
       <View style={styles.container}>

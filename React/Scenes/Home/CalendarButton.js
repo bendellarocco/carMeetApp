@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var {
   StyleSheet,
@@ -10,7 +11,11 @@ var {
 } = React;
 
 var CalendarButton = React.createClass({
+  mixins: [PureRenderMixin],
+
   render: function() {
+    console.log('Scenes/Home/CalendarButton', 'render');
+
     return (
       <View style={styles.container}>
         <Image source={require('image!calendar')} style={styles.icon} />
@@ -36,7 +41,7 @@ var styles = StyleSheet.create({
     marginTop: -2,
     marginRight: 10
   },
-  
+
   text: {
     color: '#FFFFFF',
     fontFamily: 'Avenir',

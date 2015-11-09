@@ -1,6 +1,9 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
+var ReactFireMixin = require('reactfire');
+var _ = require('lodash');
 
 var {
   Text,
@@ -17,19 +20,38 @@ var {
   height,
 } = Dimensions.get('window');
 
+var Firebase = require('../../firebase');
+var Banner = require('./Banner');
 var Description = require('./Description');
 var Scrolling = require('./ScrollView');
 var GuestInfo = require('./GuestInfo');
 
 var Content = React.createClass ({
+  mixins: [PureRenderMixin, ReactFireMixin],
+
+  componentWillMount: function() {
+    this.bindAsObject(Firebase.child('event'), 'event');
+  },
+
 	render () {
+    console.log('Scenes/Home/Event', 'render');
+
+    if (_.isNull(this.state) || _.isUndefined(this.state.event)) {
+      return (
+        <View style={styles.container}>
+          <Text>Loading</Text>
+        </View>
+      );
+    }
+
 		return (
 			<View style={styles.content}>
+        <Banner image={this.state.event.banner} />
         <View style={styles.description}>
-          <Description {...this.props.event}/>
+          <Description date={this.state.event.date} />
         </View>
       	<View style={styles.guestArea}>
-        	<GuestInfo {...this.props.event}/>
+        	<GuestInfo going={this.state.event.going} />
       	</View>
       </View>
 		);

@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var {
   Text,
@@ -10,7 +11,10 @@ var {
 } = React;
 
 var Description = React.createClass({
+  mixins: [PureRenderMixin],
+
   render: function() {
+    console.log('Scenes/Home/Description', 'render');
     return (
       <View style={styles.container}>
       	<Text style={styles.date}>{this.props.date}</Text>
@@ -31,8 +35,8 @@ var styles = StyleSheet.create({
     	fontFamily: 'Avenir',
     	fontSize: 20,
     	fontWeight: "300",
-    	textAlign: 'center',
     	lineHeight: 27,
+      textAlign: 'center'
 	},
 
 	text: {

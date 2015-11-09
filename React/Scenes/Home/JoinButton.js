@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 // var EventAction = require('../../Actions/Event');
 
 var {
@@ -12,12 +13,14 @@ var {
 } = React;
 
 var JoinButton = React.createClass({
+  mixins: [PureRenderMixin],
 
   handleGoing: function() {
     // this.props.firebase.push({name: 'adam', age: 25});
   },
 
   render: function() {
+    console.log('Scenes/Home/JoinButton', 'render');
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback style={styles.container} onPress={this.handleGoing}>
