@@ -25,7 +25,8 @@ var GuestInfo = require('./guestInfo');
 var Content = React.createClass ({
   getInitialState: function() {
     return {
-      instagram: new Animated.Value(0)
+      instagram: new Animated.Value(0),
+      instagramExpanded: false
     }
   },
 
@@ -35,15 +36,15 @@ var Content = React.createClass ({
         this.state.instagram,
         {
           easing: Easing.elastic(1),
-          toValue: 1
+          toValue: this.state.instagramExpanded ? 1 : 0
         }
       )
     ]).start();
+
+    this.setState(Object.assign(this.state, {instagramExpanded: !this.state.instagramExpanded}))
   },
 
-  componentDidMount: function() {
 
-  },
 
 	render () {
 		return (
@@ -55,10 +56,10 @@ var Content = React.createClass ({
           	<GuestInfo {...this.props.event}/>
         	</View>
           <Animated.View style={{
-            width: 365,
+            width: width,
             height:this.state.instagram.interpolate({
               inputRange: [0, 1],
-              outputRange: [0, 380]
+              outputRange: [100, 380]
             }),
               padding: 1,
             margin: 3,
@@ -90,24 +91,15 @@ var styles = StyleSheet.create ({
 
   description: {
     flex: 2,
-    width: 378,
+    width: width,
     height: 450,
     backgroundColor: "white"
   },
 
   guestArea: {
     flex: 1,
-    width: 378,
+    width: width,
     height:325,
-  },
-
-  carousel: {
-    flex: 1,
-    width: 365,
-    height:375,
-    padding: 1,
-    margin: 3,
-    marginBottom: 75,
   },
 
     hashtag: {

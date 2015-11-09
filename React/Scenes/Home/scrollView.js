@@ -42,7 +42,7 @@ var Scrolling = React.createClass({
 
   onChange() {
     var ig = InstagramStore.getState()
-    var thumbs = _.values(ig.meetup);
+    var thumbs = _.values(ig.nefocus);
     var count = thumbs.length;
     thumbs = thumbs.slice((count -50), count)
     thumbs.reverse();
@@ -95,12 +95,15 @@ var Thumb = React.createClass({
   },
   render: function() {
     return (
-      <View style={styles.button}>
+      <View style={styles.container}>
+      
         <View style={styles.userInfo}>
         <Image style={styles.icon} source={{uri:this.props.icon}} />
         <Text style={styles.username}>{this.props.username}</Text>
         </View>
+        <View style={styles.button}>
         <Image style={styles.img} source={{uri:this.props.image}} />
+      </View>
       </View>
     );
   }
@@ -119,7 +122,9 @@ var styles = StyleSheet.create({
 
   userInfo: {
     flexDirection: 'row',
-    marginBottom: 5,
+    alignItems: 'flex-start',
+    margin: 5,
+    marginLeft: 15,
   },
 
   scrollView: {
@@ -133,14 +138,12 @@ var styles = StyleSheet.create({
   button: {
     margin: 1,
     alignItems: 'center',
-    padding: 5,
+    paddingBottom: 5,
   },
   buttonContents: {
     flexDirection: 'row',
     width: 340,
     height: 64,
-
-
   },
   img: {
     width: 340,
@@ -151,18 +154,15 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir',
     fontSize: 14,
     fontWeight: "700",
-    position: 'relative',
-    right: 90,
-    top:5,
+    textAlign: 'right',
+    marginLeft: 5,
+    marginTop: 5,
 
   },
   icon: {
     height: 30,
     width:30,
-    position: 'relative',
     borderRadius:15,
-    right: 100,
-
   },
 });
 
