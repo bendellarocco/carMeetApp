@@ -89,10 +89,7 @@ var Thumb = React.createClass({
   }
 });
 
-
-
 var styles = StyleSheet.create({
-
   container: {
     borderStyle: 'solid',
     borderColor: '#00A4C5',

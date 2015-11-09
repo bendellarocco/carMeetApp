@@ -22,7 +22,7 @@ var {
 
 var Firebase = require('../../firebase');
 var Banner = require('./Banner');
-var Content = require('./Content');
+var Event = require('./Event');
 var Scrolling = require('./ScrollView');
 var JoinButton = require('./JoinButton')
 
@@ -40,7 +40,7 @@ var HomeScene = React.createClass({
     }
   },
 
-    expandInstagram: function() {
+  expandInstagram: function() {
     Animated.sequence([
       Animated.timing(
         this.state.instagram,
@@ -66,7 +66,7 @@ var HomeScene = React.createClass({
     return (
       <View style={styles.container}>
         <Banner image={this.state.event.banner} />
-        <Content event={this.state.event} />
+        <Event event={this.state.event} />
         <Animated.View style={{
           width: width,
           height:this.state.instagram.interpolate({
@@ -76,7 +76,7 @@ var HomeScene = React.createClass({
           padding: 1,
           margin: 3,
           marginBottom: 10,
-         }}>
+        }}>
           <TouchableWithoutFeedback onPress={this.expandInstagram}>
             <Text style={styles.hashtag}>
               {this.state.event.hashtag}

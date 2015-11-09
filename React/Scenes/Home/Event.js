@@ -22,37 +22,16 @@ var Scrolling = require('./ScrollView');
 var GuestInfo = require('./GuestInfo');
 
 var Content = React.createClass ({
-  getInitialState: function() {
-    return {
-      instagram: new Animated.Value(0),
-      instagramExpanded: false
-    }
-  },
-
-  expandInstagram: function() {
-    Animated.sequence([
-      Animated.timing(
-        this.state.instagram,
-        {
-          easing: Easing.elastic(1),
-          toValue: this.state.instagramExpanded ? 1 : 0
-        }
-      )
-    ]).start();
-
-    this.setState(Object.assign(this.state, {instagramExpanded: !this.state.instagramExpanded}))
-  },
-
 	render () {
 		return (
 			<View style={styles.content}>
-          <View style={styles.description}>
-            <Description {...this.props.event}/>
-          </View>
-        	<View style={styles.guestArea}>
-          	<GuestInfo {...this.props.event}/>
-        	</View>
+        <View style={styles.description}>
+          <Description {...this.props.event}/>
         </View>
+      	<View style={styles.guestArea}>
+        	<GuestInfo {...this.props.event}/>
+      	</View>
+      </View>
 		);
 	}
 });
@@ -79,8 +58,7 @@ var styles = StyleSheet.create ({
     flex: 1,
     width: width,
     height: (height * .48),
-  },
-
+  }
 });
 
 module.exports = Content;
