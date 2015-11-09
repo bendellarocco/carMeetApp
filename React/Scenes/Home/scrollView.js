@@ -1,15 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
 var React = require('react-native');
-var Firebase = require('firebase');
-var InstagramStore = require('../../Stores/Instagram');
-
-
-
-//var THUMBS = ['http://www.spencer1984.com/image/m348c.jpg', 'http://tearstone.com/grid/wp-content/uploads/2007/10/P1000110s-175x150.jpg', 'https://wetshinedotnet.files.wordpress.com/2007/10/59-subaru.jpg?w=175&h=150&crop=1'];
-//var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
-
 var {
   ScrollView,
   StyleSheet,
@@ -19,6 +10,7 @@ var {
   ListView,
   Dimensions,
 } = React;
+var FirebaseModel = require('../../Mixins/FirebaseModel');
 
 var {
   width,
@@ -26,40 +18,33 @@ var {
 } = Dimensions.get('window');
 
 var Scrolling = React.createClass({
+  mixins: [
+    FirebaseModel(require('../../firebase'), {
+      stream: 'instagram/meetup'
+    })
+  ],
 
   getInitialState: function() {
     return {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1.id !== row2.id,
-
       }),
-      loaded: false,
       count: 0,
     };
   },
 
-  componentDidMount() {
-    InstagramStore.listen(this.onChange);
-  },
+  handleRefValue(snapshot) {
+    var count = snapshot.numChildren();
+    var thumbs = _.values(snapshot.val().nefocus);
 
-  componentWillUnmount() {
-    InstagramStore.unlisten(this.onChange);
-  },
-
-  onChange() {
-    var ig = InstagramStore.getState()
-    var thumbs = _.values(ig.nefocus);
-    var count = thumbs.length;
-    thumbs = thumbs.slice((count -50), count)
+    thumbs = thumbs.slice((count - 50), count);
     thumbs.reverse();
+
     this.setState({
       count: count,
-      dataSource: this.state.dataSource.cloneWithRows(thumbs),
-      loaded: true,
+      dataSource: this.state.dataSource.cloneWithRows(thumbs)
     });
   },
-
-
 
   renderLoadingView: function() {
     return (
@@ -83,7 +68,6 @@ var Scrolling = React.createClass({
           dataSource={this.state.dataSource}
           renderRow={(image) => {
             return (
-
               <Thumb image={image.image} icon={image.user.profile_picture} username={image.user.username}/>
             );
           }}
@@ -102,7 +86,7 @@ var Thumb = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-      
+
         <View style={styles.userInfo}>
         <Image style={styles.icon} source={{uri:this.props.icon}} />
         <Text style={styles.username}>{this.props.username}</Text>
@@ -144,7 +128,12 @@ var styles = StyleSheet.create({
   button: {
     margin: 1,
     alignItems: 'center',
+<<<<<<< 8e062443151d02265e6a83ed4a30fc68ab51ab9d
     paddingBottom: 5,
+=======
+
+    padding: 5,
+>>>>>>> firebase model
   },
   buttonContents: {
     flexDirection: 'row',

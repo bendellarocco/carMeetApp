@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var EventAction = require('../../Actions/Event');
+// var EventAction = require('../../Actions/Event');
+
 var {
   StyleSheet,
   Text,
@@ -13,7 +14,7 @@ var {
 var JoinButton = React.createClass({
 
   handleGoing: function() {
-    EventAction.addGoing({name: 'adam', age: 25});
+    // EventAction.addGoing({name: 'adam', age: 25});
   },
   render: function() {
     return (

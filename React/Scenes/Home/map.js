@@ -13,6 +13,7 @@ var {
 
 var MapExample = React.createClass({
   mixins: [Mapbox.Mixin],
+
   getInitialState() {
     return {
       center: {
@@ -64,21 +65,27 @@ var MapExample = React.createClass({
       }]
      };
   },
+
   onRegionChange(location) {
     this.setState({ currentZoom: location.zoom });
   },
+
   onRegionWillChange(location) {
     console.log(location);
   },
+
   onUpdateUserLocation(location) {
     console.log(location);
   },
+
   onOpenAnnotation(annotation) {
     console.log(annotation);
   },
+
   onRightAnnotationTapped(e) {
     console.log(e);
   },
+  
   render: function() {
     StatusBarIOS.setHidden(true);
     return (

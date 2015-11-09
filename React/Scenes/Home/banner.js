@@ -21,7 +21,7 @@ var Banner = React.createClass({
 
         <Image
           style={styles.mainImage}
-          source={{uri: this.props.banner}}>
+          source={{uri: this.props.image}}>
         </Image>
         <Text style={styles.name}>
         </Text>

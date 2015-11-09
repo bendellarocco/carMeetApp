@@ -3,7 +3,8 @@
 var React = require('react-native');
 var BackgroundGeolocation = require('react-native-background-geolocation');
 var HomeScene = require('./Scenes/Home');
-var RestrictedComponent = require('./Mixins/RestrictedComponent');
+// var RestrictedComponent = require('./Mixins/RestrictedComponent');
+
 var {
   AppRegistry,
   StyleSheet,
@@ -96,4 +97,5 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('Meetups', () => RestrictedComponent(Meetups));
+// AppRegistry.registerComponent('Meetups', () => RestrictedComponent(Meetups));
+AppRegistry.registerComponent('Meetups', () => Meetups);

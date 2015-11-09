@@ -1,35 +1,26 @@
 'use strict';
 
 var React = require('react-native');
-var EventStore = require('../../Stores/Event');
-var EventActions = require('../../Actions/Event');
+
 var {
   StyleSheet,
   Text,
   View
 } = React;
 
+var FirebaseModel = require('../../Mixins/FirebaseModel');
+
 var Scene = React.createClass({
-  getInitialState() {
-    return EventStore.getState();
-  },
-
-  componentDidMount() {
-    EventStore.listen(this.onChange);
-  },
-
-  componentWillUnmount() {
-    EventStore.unlisten(this.onChange);
-  },
-
-  onChange(state) {
-    this.setState(state);
-  },
+  mixins: [
+    FirebaseModel(require('../../firebase'), {
+      event: 'event'
+    })
+  ],
 
   render: function() {
     return (
       <View style={styles.container}>
-        <Text>Hello: {this.state.title}</Text>
+        {this.state.loading ? <Text /> : <Text>Hello: {this.state.event.title}</Text>}
       </View>
     );
   }

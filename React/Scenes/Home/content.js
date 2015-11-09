@@ -17,9 +17,9 @@ var {
   height,
 } = Dimensions.get('window');
 
-var Description = require('./description');
-var Scrolling = require('./scrollView');
-var GuestInfo = require('./guestInfo');
+var Description = require('./Description');
+var Scrolling = require('./ScrollView');
+var GuestInfo = require('./GuestInfo');
 
 
 var Content = React.createClass ({
@@ -61,7 +61,7 @@ var Content = React.createClass ({
               inputRange: [0, 1],
               outputRange: [100, 380]
             }),
-              padding: 1,
+            padding: 1,
             margin: 3,
             marginBottom: 10,
            }}>
