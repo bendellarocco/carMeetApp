@@ -17,7 +17,13 @@ var {
   Image,
   Text,
   ListView,
+  Dimensions,
 } = React;
+
+var {
+  width,
+  height,
+} = Dimensions.get('window');
 
 var Scrolling = React.createClass({
 
@@ -129,11 +135,11 @@ var styles = StyleSheet.create({
 
   scrollView: {
     flex:1,
-    height: 540,
+    height: (height * .80),
   },
   containerPage: {
-    height: 500,
-    width: 340,
+    height: (height * .74),
+    width: width,
   },
   button: {
     margin: 1,
@@ -142,12 +148,12 @@ var styles = StyleSheet.create({
   },
   buttonContents: {
     flexDirection: 'row',
-    width: 340,
+    width: width,
     height: 64,
   },
   img: {
-    width: 340,
-    height: 340,
+    width: width,
+    height: width,
   },
   username: {
     color: '#125688',

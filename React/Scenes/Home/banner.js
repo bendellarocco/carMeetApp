@@ -6,7 +6,13 @@ var {
   Text,
   StyleSheet,
   View,
+  Dimensions,
 } = React;
+
+var {
+  width,
+  height,
+} = Dimensions.get('window');
 
 var Banner = React.createClass({
 	render() {
@@ -28,13 +34,13 @@ var styles = StyleSheet.create({
   mainImageContainer: {
     alignItems: 'center',
     position: 'relative',
-    height: 173,
+    height: (height * .25),
     backgroundColor: 'white',
     marginBottom: 0
   },
   mainImage: {
-    height: 173,
-    width: 378,
+    height: (height * .25),
+    width: width,
     position: 'relative',
     top: 0
   },

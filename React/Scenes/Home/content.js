@@ -92,14 +92,14 @@ var styles = StyleSheet.create ({
   description: {
     flex: 2,
     width: width,
-    height: 450,
+    height: (height * .66),
     backgroundColor: "white"
   },
 
   guestArea: {
     flex: 1,
     width: width,
-    height:325,
+    height: (height * .48),
   },
 
     hashtag: {

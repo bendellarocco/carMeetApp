@@ -10,7 +10,13 @@ var {
   Text,
   StyleSheet,
   View,
+  Dimensions,
 } = React;
+
+var {
+  width,
+  height,
+} = Dimensions.get('window');
 
 
 var GuestInfo = React.createClass ({
