@@ -53,9 +53,7 @@ var Scrolling = React.createClass({
     });
   },
 
-  renderThumb(image) {
-    return <span>Thumb</span>;
-  },
+
 
   renderLoadingView: function() {
     return (
@@ -74,13 +72,13 @@ var Scrolling = React.createClass({
 
     return (
       <View style={styles.container}>
-        
         <ListView
           style={styles.scrollView}
           dataSource={this.state.dataSource}
           renderRow={(image) => {
             return (
-              <Thumb uri={image.image} />
+
+              <Thumb image={image.image} icon={image.user.profile_picture} username={image.user.username}/>
             );
           }}
         />
@@ -98,7 +96,11 @@ var Thumb = React.createClass({
   render: function() {
     return (
       <View style={styles.button}>
-        <Image style={styles.img} source={{uri:this.props.uri}} />
+        <View style={styles.userInfo}>
+        <Image style={styles.icon} source={{uri:this.props.icon}} />
+        <Text style={styles.username}>{this.props.username}</Text>
+        </View>
+        <Image style={styles.img} source={{uri:this.props.image}} />
       </View>
     );
   }
@@ -115,6 +117,11 @@ var styles = StyleSheet.create({
     backgroundColor: '#E0E0E0',
   },
 
+  userInfo: {
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
+
   scrollView: {
     flex:1,
     height: 540,
@@ -126,7 +133,6 @@ var styles = StyleSheet.create({
   button: {
     margin: 1,
     alignItems: 'center',
-    
     padding: 5,
   },
   buttonContents: {
@@ -134,17 +140,29 @@ var styles = StyleSheet.create({
     width: 340,
     height: 64,
 
+
   },
   img: {
     width: 340,
     height: 340,
-
   },
-  hashtag: {
-    color: '#737373',
+  username: {
+    color: '#125688',
     fontFamily: 'Avenir',
     fontSize: 14,
-    fontWeight: "700"
+    fontWeight: "700",
+    position: 'relative',
+    right: 90,
+    top:5,
+
+  },
+  icon: {
+    height: 30,
+    width:30,
+    position: 'relative',
+    borderRadius:15,
+    right: 100,
+
   },
 });
 
