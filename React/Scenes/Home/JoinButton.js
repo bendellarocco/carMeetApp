@@ -14,7 +14,7 @@ var {
 var JoinButton = React.createClass({
 
   handleGoing: function() {
-    this.props.firebase.push({name: 'adam', age: 25});
+    // this.props.firebase.push({name: 'adam', age: 25});
   },
 
   render: function() {
