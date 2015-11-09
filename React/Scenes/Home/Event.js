@@ -10,9 +10,6 @@ var {
   StyleSheet,
   View,
   Dimensions,
-  Animated,
-  Easing,
-  TouchableWithoutFeedback,
 } = React;
 
 var {
@@ -23,7 +20,6 @@ var {
 var Firebase = require('../../firebase');
 var Banner = require('./Banner');
 var Description = require('./Description');
-var Scrolling = require('./ScrollView');
 var GuestInfo = require('./GuestInfo');
 
 var Content = React.createClass ({

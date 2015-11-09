@@ -96,7 +96,8 @@ var styles = StyleSheet.create({
   container: {
     borderStyle: 'solid',
     borderColor: '#00A4C5',
-    backgroundColor: '#E0E0E0',
+    backgroundColor: '#F0F0F0',
+    
   },
 
   userInfo: {
@@ -120,6 +121,10 @@ var styles = StyleSheet.create({
     margin: 1,
     alignItems: 'center',
     paddingBottom: 5,
+    borderStyle: 'solid',
+    borderColor: '#D8D8D8 ',
+    width: (width * .98),
+    borderBottomWidth: 1,
   },
 
   buttonContents: {
@@ -129,8 +134,8 @@ var styles = StyleSheet.create({
   },
 
   img: {
-    width: width,
-    height: width,
+    width: (width * .90),
+    height: (width * .90),
   },
 
   username: {
@@ -146,6 +151,7 @@ var styles = StyleSheet.create({
     height: 30,
     width:30,
     borderRadius:15,
+    marginLeft: 5,
   }
 });
 

@@ -27,22 +27,39 @@ var HomeScene = React.createClass({
   getInitialState: function() {
     return {
       instagram: new Animated.Value(0),
-      instagramExpanded: false
+      eventsFade: new Animated.Value(0),
+      instagramExpanded: false,
+      eventsFaded: false,
     }
   },
 
   expandInstagram: function() {
+    this.fadeGoing()
+
     Animated.sequence([
       Animated.timing(
         this.state.instagram,
         {
           easing: Easing.elastic(1),
           toValue: this.state.instagramExpanded ? 1 : 0
-        }
+        },
       )
     ]).start();
 
     this.setState(Object.assign(this.state, {instagramExpanded: !this.state.instagramExpanded}))
+  },
+
+  fadeGoing: function() {
+    Animated.sequence([
+      Animated.timing(
+        this.state.eventsFade,
+        {
+          toValue: this.state.eventsFaded ? 1 : 0
+        },
+      )
+    ]).start();
+
+    this.setState(Object.assign(this.state, {eventsFaded: !this.state.eventsFaded}))
   },
 
   render: function() {
@@ -50,20 +67,33 @@ var HomeScene = React.createClass({
 
   return (
       <View style={styles.container}>
-        <Event />
+        <Animated.View style={{
+          height: this.state.eventsFade.interpolate({
+              inputRange: [0, 1],
+              outputRange: [350, 25]
+            }),
+          width: width,
+          opacity: this.state.eventsFade.interpolate({
+              inputRange: [0, 1],
+              outputRange: [100, 0]
+            }),
+        }}>
+          <Event />
+        </Animated.View>
+
         <Animated.View style={{
           width: width,
           height:this.state.instagram.interpolate({
             inputRange: [0, 1],
-            outputRange: [100, 380]
+            outputRange: [100, 405]
           }),
           padding: 1,
           margin: 3,
           marginBottom: 10,
-        }}>
+         }}>
           <TouchableWithoutFeedback onPress={this.expandInstagram}>
             <Text style={styles.hashtag}>
-              #NeFocusPrewinterMeet
+                #NeFocus
             </Text>
           </TouchableWithoutFeedback>
           <Scrolling />
@@ -84,6 +114,10 @@ var styles = StyleSheet.create({
 
   navBar: {
     flexDirection: 'row',
+    position: 'absolute',
+    bottom:0,
+    width: width,
+
   },
 
   scrollingBar: {
