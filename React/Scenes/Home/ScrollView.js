@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var {values} = require('lodash');
+var ReactFireMixin = require('reactfire');
+var _ = require('lodash');
 
 var {
   ScrollView,
@@ -13,7 +14,7 @@ var {
   Dimensions,
 } = React;
 
-var FirebaseModel = require('../../Mixins/FirebaseModel');
+var Firebase = require('../../firebase');
 
 var {
   width,
@@ -21,33 +22,14 @@ var {
 } = Dimensions.get('window');
 
 var Scrolling = React.createClass({
-  mixins: [
-    FirebaseModel(require('../../firebase'), {
-      stream: 'instagram/nefocus'
+  mixins: [ReactFireMixin],
+
+  componentWillMount: function() {
+    this.dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1.id !== row2.id,
     })
-  ],
 
-  getInitialState: function() {
-    return {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1.id !== row2.id,
-      }),
-      count: 0,
-    };
-  },
-
-  handleRefValue(snapshot) {
-    var count = snapshot.numChildren();
-    var thumbs = values(snapshot.val());
-
-    thumbs = thumbs.slice((count - 50), count);
-    thumbs.reverse();
-
-    this.setState({
-      count: count,
-      dataSource: this.state.dataSource.cloneWithRows(thumbs),
-      loaded: true
-    });
+    this.bindAsArray(Firebase.child('instagram').child('nefocus'), 'stream');
   },
 
   renderLoadingView: function() {
@@ -61,15 +43,22 @@ var Scrolling = React.createClass({
   },
 
   render: function() {
-    if (!this.state.loaded) {
+    if (_.isNull(this.state) || _.isUndefined(this.state.stream)) {
       return this.renderLoadingView();
     }
+
+    var stream = this.state.stream;
+    var count = stream.length;
+    var thumbs = stream.slice((count - 50), count);
+    thumbs.reverse();
+
+    this.dataSource = this.dataSource.cloneWithRows(thumbs);
 
     return (
       <View style={styles.container}>
         <ListView
           style={styles.scrollView}
-          dataSource={this.state.dataSource}
+          dataSource={this.dataSource}
           renderRow={(image) => {
             return (
               <Thumb image={image.image} icon={image.user.profile_picture} username={image.user.username}/>

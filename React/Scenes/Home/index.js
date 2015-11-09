@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var ReactFireMixin = require('reactfire');
+var _ = require('lodash');
 
 var {
   StyleSheet,
@@ -13,23 +15,24 @@ var {
   Dimensions,
 } = React;
 
+<<<<<<< Updated upstream
 var {
   width,
   height,
 } = Dimensions.get('window');
 
-var FirebaseModel = require('../../Mixins/FirebaseModel');
+var Firebase = require('../../firebase');
 var Banner = require('./Banner');
 var Content = require('./Content');
 var Scrolling = require('./ScrollView');
 var JoinButton = require('./JoinButton')
 
 var HomeScene = React.createClass({
-  mixins: [
-    FirebaseModel(require('../../firebase'), {
-      event: 'event'
-    })
-  ],
+  mixins: [ReactFireMixin],
+
+  componentWillMount: function() {
+    this.bindAsObject(Firebase.child('event'), 'event');
+  },
 
   getInitialState: function() {
     return {
@@ -53,7 +56,7 @@ var HomeScene = React.createClass({
   },
 
   render: function() {
-    if (!this.state.loaded) {
+    if (_.isNull(this.state) || _.isUndefined(this.state.event)) {
       return (
         <View style={styles.container}>
           <Text>Loading</Text>
@@ -83,7 +86,7 @@ var HomeScene = React.createClass({
             <Scrolling {...this.state.event} />
           </Animated.View>
         <View style={styles.navBar}>
-          <JoinButton firebase={this.refs.event.child('going')} />
+          <JoinButton />
         </View>
       </View>
     );
