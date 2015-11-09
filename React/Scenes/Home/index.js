@@ -70,13 +70,10 @@ var HomeScene = React.createClass({
         <Animated.View style={{
           height: this.state.eventsFade.interpolate({
               inputRange: [0, 1],
-              outputRange: [350, 25]
+              outputRange: [500, 175]
             }),
           width: width,
-          opacity: this.state.eventsFade.interpolate({
-              inputRange: [0, 1],
-              outputRange: [100, 0]
-            }),
+
         }}>
           <Event />
         </Animated.View>
@@ -90,6 +87,7 @@ var HomeScene = React.createClass({
           padding: 1,
           margin: 3,
           marginBottom: 10,
+
          }}>
           <TouchableWithoutFeedback onPress={this.expandInstagram}>
             <Text style={styles.hashtag}>
