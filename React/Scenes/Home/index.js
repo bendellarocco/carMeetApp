@@ -32,10 +32,10 @@ var HomeScene = React.createClass({
 
     return (
       <View style={styles.container}>
-        <Banner image={this.state.event.image} />
+        <Banner image={this.state.event.banner} />
         <Content event={this.state.event} />
         <View style={styles.navBar}>
-          <JoinButton />
+          <JoinButton firebase={this.refs.event.child('going')} />
         </View>
       </View>
     );

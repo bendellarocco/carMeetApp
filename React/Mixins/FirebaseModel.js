@@ -1,7 +1,5 @@
 'use strict';
 
-var Fr
-
 module.exports = function (Firebase , props) {
   return {
 
@@ -25,6 +23,8 @@ module.exports = function (Firebase , props) {
         refs[prop] = Firebase.child(props[prop]);
         this.bindFirebaseEvents(refs[prop], prop);
       });
+
+      this.refs = refs;
     },
 
     bindFirebaseEvents(ref, prop) {

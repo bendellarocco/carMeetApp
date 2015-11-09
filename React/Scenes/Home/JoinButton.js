@@ -14,7 +14,7 @@ var {
 var JoinButton = React.createClass({
 
   handleGoing: function() {
-    // EventAction.addGoing({name: 'adam', age: 25});
+    this.props.firebase.push({name: 'adam', age: 25});
   },
 
   render: function() {
@@ -40,7 +40,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#00A4C5',
     height: 40
   },
-  
+
   text: {
     color: '#FFFFFF',
     fontFamily: 'Avenir',
