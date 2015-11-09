@@ -15,7 +15,6 @@ var {
   Dimensions,
 } = React;
 
-<<<<<<< Updated upstream
 var {
   width,
   height,
