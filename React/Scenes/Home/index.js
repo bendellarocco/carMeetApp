@@ -68,22 +68,22 @@ var HomeScene = React.createClass({
         <Banner image={this.state.event.banner} />
         <Content event={this.state.event} />
         <Animated.View style={{
-            width: width,
-            height:this.state.instagram.interpolate({
-              inputRange: [0, 1],
-              outputRange: [100, 380]
-            }),
-            padding: 1,
-            margin: 3,
-            marginBottom: 10,
-           }}>
-            <TouchableWithoutFeedback onPress={this.expandInstagram}>
-              <Text style={styles.hashtag}>
-                  {this.state.event.hashtag}
-              </Text>
-            </TouchableWithoutFeedback>
-            <Scrolling {...this.state.event} />
-          </Animated.View>
+          width: width,
+          height:this.state.instagram.interpolate({
+            inputRange: [0, 1],
+            outputRange: [100, 380]
+          }),
+          padding: 1,
+          margin: 3,
+          marginBottom: 10,
+         }}>
+          <TouchableWithoutFeedback onPress={this.expandInstagram}>
+            <Text style={styles.hashtag}>
+              {this.state.event.hashtag}
+            </Text>
+          </TouchableWithoutFeedback>
+          <Scrolling {...this.state.event} />
+        </Animated.View>
         <View style={styles.navBar}>
           <JoinButton />
         </View>
