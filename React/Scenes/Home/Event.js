@@ -30,7 +30,6 @@ var Content = React.createClass ({
   },
 
 	render () {
-    console.log('Scenes/Home/Event', 'render');
 
     if (_.isNull(this.state) || _.isUndefined(this.state.event)) {
       return (
