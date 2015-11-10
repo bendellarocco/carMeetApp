@@ -97,7 +97,6 @@ var styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#00A4C5',
     backgroundColor: '#F0F0F0',
-    
   },
 
   userInfo: {

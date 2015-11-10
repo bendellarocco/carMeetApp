@@ -10,6 +10,7 @@ var {
   StyleSheet,
   View,
   Dimensions,
+  Animated,
 } = React;
 
 var {
@@ -46,6 +47,9 @@ var styles = StyleSheet.create({
 		backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
+    borderStyle: 'solid',
+    borderColor: '#D8D8D8 ',
+    borderTopWidth: 1,
 	},
 
   going: {

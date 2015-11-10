@@ -21,7 +21,8 @@ var {
 
 var Event = require('./Event');
 var Scrolling = require('./ScrollView');
-var JoinButton = require('./JoinButton')
+var JoinButton = require('./JoinButton');
+var Drag = require('../../Components/DragView')
 
 var HomeScene = React.createClass({
   getInitialState: function() {
@@ -87,6 +88,9 @@ var HomeScene = React.createClass({
           padding: 1,
           margin: 3,
           marginBottom: 10,
+          borderStyle: 'solid',
+          borderColor: '#D8D8D8 ',
+          borderTopWidth: 1,
 
          }}>
           <TouchableWithoutFeedback onPress={this.expandInstagram}>
@@ -99,6 +103,8 @@ var HomeScene = React.createClass({
         <View style={styles.navBar}>
           <JoinButton />
         </View>
+        <Drag>
+        </Drag>
       </View>
     );
   }
@@ -120,6 +126,7 @@ var styles = StyleSheet.create({
 
   scrollingBar: {
     backgroundColor: 'white',
+
   },
 
   hashtag: {
