@@ -57,7 +57,7 @@ var HomeScene = React.createClass({
             component: (onActivate, panelState) => {
               return (
                 <View style={{backgroundColor: 'yellow', flex: 1}}>
-                  <Event expand={onActivate} state={panelState} />
+                  <Scrolling expand={onActivate} state={panelState} />
                 </View>
               );
             }
