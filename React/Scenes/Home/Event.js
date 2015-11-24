@@ -95,6 +95,9 @@ var Content = React.createClass ({
 
 		return (
 			<View style={styles.content}>
+        <TouchableWithoutFeedback onPress={this.props.expand}>
+          <Text>Expand Me</Text>
+        </TouchableWithoutFeedback>
         <Banner image={this.state.event.banner} />
         <View style={styles.description}>
           <Description date={this.state.event.date} />

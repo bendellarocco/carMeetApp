@@ -13,6 +13,7 @@ var {
   Text,
   ListView,
   Dimensions,
+  TouchableWithoutFeedback
 } = React;
 
 var Firebase = require('../../firebase');
@@ -56,9 +57,12 @@ var Scrolling = React.createClass({
     thumbs.reverse();
 
     this.dataSource = this.dataSource.cloneWithRows(thumbs);
-
+    console.log(this.props);
     return (
       <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={this.props.expand}>
+          <Text>Instagram feed</Text>
+        </TouchableWithoutFeedback>
         <ListView
           style={styles.scrollView}
           dataSource={this.dataSource}

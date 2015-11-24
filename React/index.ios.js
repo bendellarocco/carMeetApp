@@ -9,7 +9,8 @@ var {
   AppRegistry,
   StyleSheet,
   Navigator,
-  View
+  View,
+  StatusBarIOS
 } = React;
 
 var Meetups = React.createClass({
@@ -19,6 +20,10 @@ var Meetups = React.createClass({
         component: HomeScene
       }
     };
+  },
+
+  componentWillMount: function() {
+    StatusBarIOS.setHidden(true);
   },
 
   componentDidMount: function() {
