@@ -23,7 +23,6 @@ var Event = require('./Event');
 var Scrolling = require('./ScrollView');
 var JoinButton = require('./JoinButton');
 var ProfileButton = require('./ProfileButton');
-var Drag = require('../../Components/DragView')
 
 var HomeScene = React.createClass({
   getInitialState: function() {

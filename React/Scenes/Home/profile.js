@@ -23,10 +23,7 @@ var {
 var Profile  = React.createClass({
 
   getInitialState: function(){
-    return {
-      animated: true,
-      expandedProfile: false,
-    };
+
   },
 
   render: function() {
