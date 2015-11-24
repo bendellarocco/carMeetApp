@@ -22,6 +22,7 @@ var {
 var Event = require('./Event');
 var Scrolling = require('./ScrollView');
 var JoinButton = require('./JoinButton');
+var ProfileButton = require('./ProfileButton');
 var Drag = require('../../Components/DragView')
 
 var HomeScene = React.createClass({
@@ -35,31 +36,23 @@ var HomeScene = React.createClass({
   },
 
   expandInstagram: function() {
-    this.fadeGoing()
-
-    Animated.sequence([
+    Animated.parallel([
       Animated.timing(
         this.state.instagram,
         {
           easing: Easing.elastic(1),
-          toValue: this.state.instagramExpanded ? 1 : 0
+          toValue: this.state.instagramExpanded ? 0 : 1
+        },
+      ),
+      Animated.timing(
+        this.state.eventsFade,
+        {
+          toValue: this.state.eventsFaded ? 0 : 1
         },
       )
     ]).start();
 
     this.setState(Object.assign(this.state, {instagramExpanded: !this.state.instagramExpanded}))
-  },
-
-  fadeGoing: function() {
-    Animated.sequence([
-      Animated.timing(
-        this.state.eventsFade,
-        {
-          toValue: this.state.eventsFaded ? 1 : 0
-        },
-      )
-    ]).start();
-
     this.setState(Object.assign(this.state, {eventsFaded: !this.state.eventsFaded}))
   },
 
@@ -71,7 +64,7 @@ var HomeScene = React.createClass({
         <Animated.View style={{
           height: this.state.eventsFade.interpolate({
               inputRange: [0, 1],
-              outputRange: [500, 175]
+              outputRange: [580, 175]
             }),
           width: width,
 
@@ -83,7 +76,7 @@ var HomeScene = React.createClass({
           width: width,
           height:this.state.instagram.interpolate({
             inputRange: [0, 1],
-            outputRange: [100, 405]
+            outputRange: [20, 405]
           }),
           padding: 1,
           margin: 3,
@@ -95,16 +88,15 @@ var HomeScene = React.createClass({
          }}>
           <TouchableWithoutFeedback onPress={this.expandInstagram}>
             <Text style={styles.hashtag}>
-                #NeFocus
+                Instagram Feed
             </Text>
           </TouchableWithoutFeedback>
           <Scrolling />
         </Animated.View>
         <View style={styles.navBar}>
           <JoinButton />
+          <ProfileButton />
         </View>
-        <Drag>
-        </Drag>
       </View>
     );
   }
@@ -133,8 +125,14 @@ var styles = StyleSheet.create({
     color: '#737373',
     fontFamily: 'Avenir',
     fontSize: 14,
-    fontWeight: "700"
-  }
+    fontWeight: "700",
+    marginBottom: 25,
+  },
+
+  icon: {
+    height:32,
+    width:32,
+  },
 });
 
 module.exports = HomeScene;

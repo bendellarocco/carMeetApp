@@ -20,7 +20,6 @@ var JoinButton = React.createClass({
   },
 
   render: function() {
-    console.log('Scenes/Home/JoinButton', 'render');
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback style={styles.container} onPress={this.handleGoing}>

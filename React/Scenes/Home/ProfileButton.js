@@ -10,16 +10,13 @@ var {
   View
 } = React;
 
-var CalendarButton = React.createClass({
+var ProfileButton = React.createClass({
   mixins: [PureRenderMixin],
 
   render: function() {
-    console.log('Scenes/Home/CalendarButton', 'render');
-
     return (
       <View style={styles.container}>
-        <Image source={require('image!calendar')} style={styles.icon} />
-        <Text style={styles.text}>calendar</Text>
+        <Text style={styles.text}>Profile</Text>
       </View>
     );
   }
@@ -49,4 +46,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = CalendarButton;
+module.exports = ProfileButton;
