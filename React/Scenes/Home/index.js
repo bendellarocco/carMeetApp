@@ -12,6 +12,7 @@ var {
   Easing,
   TouchableWithoutFeedback,
   Dimensions,
+  Navigator,
 } = React;
 
 var {
@@ -22,6 +23,7 @@ var {
 var Event = require('./Event');
 var Scrolling = require('./ScrollView');
 var JoinButton = require('./JoinButton');
+var Profile = require('./Profile');
 var ProfileButton = require('./ProfileButton');
 
 var HomeScene = React.createClass({
@@ -31,7 +33,13 @@ var HomeScene = React.createClass({
       eventsFade: new Animated.Value(0),
       instagramExpanded: false,
       eventsFaded: false,
+      route: Profile,
     }
+  },
+
+  onProfilePress: function () {
+    console.log('pressed');
+    this.props.navigator.push({component:Profile});
   },
 
   expandInstagram: function() {
@@ -94,7 +102,9 @@ var HomeScene = React.createClass({
         </Animated.View>
         <View style={styles.navBar}>
           <JoinButton />
-          <ProfileButton />
+          <TouchableWithoutFeedback onPress={this.onProfilePress}>
+          <ProfileButton navigator={this.props.navigator}/>
+          </TouchableWithoutFeedback>
         </View>
       </View>
     );

@@ -30,53 +30,8 @@ var Content = React.createClass ({
 
   getInitialState: function() {
     return {
-      going: new Animated.Value(0),
-      details: new Animated.Value(0),
-      detailsExpanded: false,
-      goingExpanded: false,
+
     }
-  },
-
-  expandGoing: function() {
-    Animated.parallel([
-      Animated.timing(
-        this.state.going,
-        {
-          easing: Easing.elastic(1),
-          toValue: this.state.goingExpanded ? 0 : 1
-        },
-      ),
-      Animated.timing(
-        this.state.details,
-        {
-          toValue: this.state.detailsFaded ? 0 : 1
-        },
-      )
-    ]).start();
-    this.setState(Object.assign(this.state, {goingExpanded: !this.state.goingExpanded}))
-    this.setState(Object.assign(this.state, {detailsExpanded: !detailsExpanded}))
-
-  },
-
-  expandDetails: function() {
-    Animated.parallel([
-      Animated.timing(
-        this.state.instagram,
-        {
-          easing: Easing.elastic(1),
-          toValue: this.state.details ? 0 : 1
-        },
-      ),
-      Animated.timing(
-        this.state.eventsFade,
-        {
-          toValue: this.state.going ? 0 : 1
-        },
-      )
-    ]).start();
-    this.setState(Object.assign(this.state, {goingExpanded: !this.state.goingExpanded}))
-    this.setState(Object.assign(this.state, {detailsExpanded: !detailsExpanded}))
-
   },
 
   componentWillMount: function() {

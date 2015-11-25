@@ -4,6 +4,7 @@ var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
 var ReactFireMixin = require('reactfire');
 var _ = require('lodash');
+var NavigationBar = require('react-native-navbar');
 
 var {
   Text,
@@ -14,6 +15,8 @@ var {
   TouchableWithoutFeedback,
 } = React;
 
+var HomeScene = require('./index');
+
 var {
   width,
   height,
@@ -21,16 +24,24 @@ var {
 
 
 var Profile  = React.createClass({
-
-  getInitialState: function(){
-
-  },
+  mixins: [PureRenderMixin, ReactFireMixin],
 
   render: function() {
+
+  const leftButtonConfig = {
+    title: 'Home',
+    handler: () => this.props.navigator.pop({component:HomeScene}),
+  };
+
     return (
+      <View style={styles.navbar}>
+      <NavigationBar
+        title={{title:'test'}}
+        leftButton={leftButtonConfig} />
+      <Text> HELLO WORLD </Text>
+      </View>
+    );
 
-
-      );
   }
 });
 
@@ -43,6 +54,9 @@ var styles = StyleSheet.create ({
     padding: 5,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  navbar: {
+    flex: 1,
   },
 });
 

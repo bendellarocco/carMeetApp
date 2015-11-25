@@ -2,21 +2,32 @@
 
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
+var NavigationBar = require('react-native-navbar');
 
 var {
   StyleSheet,
   Text,
   Image,
-  View
+  View,
+  TouchableWithoutFeedback,
 } = React;
+
+var Profile = require('./Profile');
 
 var ProfileButton = React.createClass({
   mixins: [PureRenderMixin],
 
+  onProfilePress: function () {
+    console.log('pressed');
+    this.props.navigator.push({component:Profile});
+  },
+
   render: function() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Profile</Text>
+        <TouchableWithoutFeedback onPress={this.onProfilePress}>
+          <Text style={styles.text}>Profile</Text>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
