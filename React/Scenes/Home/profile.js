@@ -13,6 +13,7 @@ var {
   Dimensions,
   Modal,
   TouchableWithoutFeedback,
+  StatusBarIOS,
 } = React;
 
 var HomeScene = require('./index');
@@ -33,12 +34,19 @@ var Profile  = React.createClass({
     handler: () => this.props.navigator.pop({component:HomeScene}),
   };
 
+  const statusBarConfig = {
+    showAnimation: 'none',
+    hideAnimation: 'none',
+    style: 'light-content',
+  };
+
     return (
-      <View style={styles.navbar}>
+      <View style={styles.content}>
       <NavigationBar
-        title={{title:'test'}}
-        leftButton={leftButtonConfig} />
-      <Text> HELLO WORLD </Text>
+        title={{title:'Profile'}}
+        leftButton={leftButtonConfig}
+        style={styles.navbar}/>
+      <Text>USERNAME</Text>
       </View>
     );
 
@@ -48,15 +56,21 @@ var Profile  = React.createClass({
 var styles = StyleSheet.create ({
   content: {
     backgroundColor: 'white',
-    flex: 4,
-    padding: 0,
-    marginTop: 0,
-    padding: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
   },
   navbar: {
     flex: 1,
+  },
+  profile: {
+    flex: 3,
+  },
+
+  info: {
+
+  },
+
+  profilePic: {
+
   },
 });
 

@@ -64,11 +64,10 @@ var Content = React.createClass ({
 
 var styles = StyleSheet.create ({
   content: {
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     flex: 4,
     padding: 0,
     marginTop: 0,
-    padding: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },

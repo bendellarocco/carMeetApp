@@ -44,8 +44,6 @@ var Scrolling = React.createClass({
   },
 
   render: function() {
-    console.log('Scenes/Home/ScrollView', 'render');
-
     if (_.isNull(this.state) || _.isUndefined(this.state.stream)) {
       return this.renderLoadingView();
     }

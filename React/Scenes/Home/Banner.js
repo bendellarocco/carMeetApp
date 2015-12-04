@@ -18,7 +18,7 @@ var {
 
 var Banner = React.createClass({
   mixins: [PureRenderMixin],
-  
+
 	render() {
     console.log('Scenes/Home/Banner', 'render');
 
@@ -41,7 +41,7 @@ var styles = StyleSheet.create({
     position: 'relative',
     height: (height * .25),
     backgroundColor: 'white',
-    marginBottom: 0
+    marginBottom: 0,
   },
 
   mainImage: {
