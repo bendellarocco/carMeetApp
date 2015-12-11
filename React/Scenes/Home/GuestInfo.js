@@ -24,7 +24,7 @@ var GuestInfo = React.createClass ({
   mixins: [PureRenderMixin],
 
 	render: function () {
-    console.log('Scenes/Home/GuestInfo', 'render');
+
 
     var response = this.props.going;
     var keys = _.keys(response);

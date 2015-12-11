@@ -47,7 +47,6 @@ var Content = React.createClass ({
         </View>
       );
     }
-
 		return (
 			<View style={styles.content}>
         <Banner image={this.state.event.banner} />
@@ -64,7 +63,7 @@ var Content = React.createClass ({
 
 var styles = StyleSheet.create ({
   content: {
-    backgroundColor: 'red',
+    backgroundColor: 'white',
     flex: 4,
     padding: 0,
     marginTop: 0,

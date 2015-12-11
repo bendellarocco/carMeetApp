@@ -20,7 +20,7 @@ var Banner = React.createClass({
   mixins: [PureRenderMixin],
 
 	render() {
-    console.log('Scenes/Home/Banner', 'render');
+
 
     return (
 		  <View style={styles.mainImageContainer}>

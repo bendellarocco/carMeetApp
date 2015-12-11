@@ -57,7 +57,6 @@ var HomeScene = React.createClass({
   },
 
   render: function() {
-    console.log('Scenes/Home', 'render');
 
   return (
       <View style={styles.container}>

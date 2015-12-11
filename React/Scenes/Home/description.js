@@ -14,7 +14,7 @@ var Description = React.createClass({
   mixins: [PureRenderMixin],
 
   render: function() {
-    console.log('Scenes/Home/Description', 'render');
+
     return (
       <View style={styles.container}>
       	<Text style={styles.date}>{this.props.date}</Text>
