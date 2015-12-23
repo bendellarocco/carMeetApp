@@ -10,7 +10,7 @@ var {
   Image,
   View,
   TouchableWithoutFeedback,
-  Navigator,
+  Navigator
 } = React;
 
 var Profile = require('./Profile');
@@ -40,6 +40,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+
     backgroundColor: '#00A4C5',
     height: 40
   },

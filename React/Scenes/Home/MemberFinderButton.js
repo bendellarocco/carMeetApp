@@ -2,30 +2,31 @@
 
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
-// var EventAction = require('../../Actions/Event');
+// var NavigationBar = require('react-native-navbar');
 
 var {
   StyleSheet,
   Text,
   Image,
   View,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Navigator
 } = React;
 
-var JoinButton = React.createClass({
+var MemberFinder = require('./MemberFinder');
+
+var MemberFinderButton = React.createClass({
   mixins: [PureRenderMixin],
 
-  handleGoing: function() {
-    // this.props.firebase.push({name: 'adam', age: 25});
+  onMemberFinderPress: function () {
+    this.props.navigator.push({component:MemberFinder});
   },
 
   render: function() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback style={styles.container} onPress={this.handleGoing}>
-          <View style={styles.container}>
-            <Text style={styles.text}>Member Finder</Text>
-          </View>
+        <TouchableWithoutFeedback onPress={this.onMemberFinderPress}>
+          <Text style={styles.text}>Member Finder</Text>
         </TouchableWithoutFeedback>
       </View>
     );
@@ -39,8 +40,15 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+
     backgroundColor: '#00A4C5',
     height: 40
+  },
+
+  icon: {
+    backgroundColor: 'transparent',
+    marginTop: -2,
+    marginRight: 10
   },
 
   text: {
@@ -50,4 +58,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = JoinButton;
+module.exports = MemberFinderButton;

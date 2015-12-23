@@ -98,7 +98,7 @@ var HomeScene = React.createClass({
         <View style={styles.navBar}>
           <ProfileButton navigator={this.props.navigator}/>
           <JoinButton />
-          <MemberFinderButton />
+          <MemberFinderButton navigator={this.props.navigator}/>
         </View>
       </View>
     );
