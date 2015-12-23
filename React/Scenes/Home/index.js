@@ -24,8 +24,11 @@ var Event = require('./Event');
 var Scrolling = require('./ScrollView');
 var JoinButton = require('./JoinButton');
 var ProfileButton = require('./ProfileButton');
+var MemberFinderButton = require('./MemberFinderButton');
 
 var HomeScene = React.createClass({
+
+
   getInitialState: function() {
     return {
       instagram: new Animated.Value(0),
@@ -93,8 +96,9 @@ var HomeScene = React.createClass({
           <Scrolling />
         </Animated.View>
         <View style={styles.navBar}>
-          <JoinButton />
           <ProfileButton navigator={this.props.navigator}/>
+          <JoinButton />
+          <MemberFinderButton />
         </View>
       </View>
     );

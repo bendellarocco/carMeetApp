@@ -16,6 +16,7 @@ var {
   StatusBarIOS,
 } = React;
 
+var Firebase = require('../../firebase');
 var AddFriend = require('./AddFriendButton');
 var HomeScene = require('./index');
 
@@ -28,34 +29,55 @@ var {
 var Profile  = React.createClass({
   mixins: [PureRenderMixin, ReactFireMixin],
 
+  componentWillMount: function() {
+    this.bindAsObject(Firebase.child('event'), 'event');
+  },
+
   render: function() {
 
   const leftButtonConfig = {
-    title: 'Home',
+    title: '<',
+    tintColor: 'white',
     handler: () => this.props.navigator.pop({component:HomeScene}),
   };
 
-  const statusBarConfig = {
-    showAnimation: 'none',
-    hideAnimation: 'none',
-    style: 'light-content',
+  const titleConfig = {
+    title: 'Profile',
+    tintColor: 'white',
   };
+
+  if (_.isNull(this.state) || _.isUndefined(this.state.event)) {
+      return (
+        <View style={styles.container}>
+          <Text>Loading</Text>
+        </View>
+      );
+    }
 
     return (
       <View style={styles.content}>
       <NavigationBar
-        title={{title:'Profile'}}
+        statusBar={{style: 'light-content', hideAnimation: 'none', showAnimation: 'none', hidden: false}}
+        title={titleConfig}
         leftButton={leftButtonConfig}
+        tintColor={'#00A4C5'}
         style={styles.navbar}/>
+      <Text>Driver Profile</Text>
       <View style={styles.licenseContainer}>
         <View style={styles.licenseCar}>
           <Text style={styles.licenseCar}>2006 Mitsubishi Eclipse</Text>
         </View>
 
-      <View style={styles.personalInfo}>
-        <Text style={styles.licenseText}>Ben</Text>
-        <Text style={styles.licenseText}>Dellarocco</Text>
-        <Text style={styles.licenseText}>Marlborough, Massachusetts</Text>
+      <View>
+        <View style={styles.personalInfo}>
+          <Text style={styles.licenseText}>Ben</Text>
+          <Text style={styles.licenseText}>Dellarocco</Text>
+          <Text style={styles.licenseText}>Marlborough, Massachusetts</Text>
+        </View>
+
+        <View style={styles.profileImage}>
+
+        </View>
       </View>
 
       <View>
@@ -93,8 +115,8 @@ var styles = StyleSheet.create ({
 
   navbar: {
     flex: 1,
-    backgroundColor: '#00A4C5',
     width: width,
+    marginTop: -10,
   },
 
   licenseContainer: {
@@ -102,7 +124,7 @@ var styles = StyleSheet.create ({
     height: (height * .25),
     backgroundColor: '#FFFFFF',
     opacity: 1,
-    marginTop: (height * .10),
+    marginTop: (height * .09),
     borderStyle: 'solid',
     borderColor: '#00A4C5',
     borderWidth: 2,
@@ -112,6 +134,10 @@ var styles = StyleSheet.create ({
   profileImage: {
     height: 75,
     width: 75,
+    backgroundColor: 'black',
+    position: 'absolute',
+    right: 5,
+    top: 10,
   },
 
   licenseCar: {

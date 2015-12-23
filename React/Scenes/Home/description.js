@@ -10,15 +10,29 @@ var {
   Dimensions,
 } = React;
 
+var Map = require('./Map');
+
+var {
+  width,
+  height,
+} = Dimensions.get('window');
+
 var Description = React.createClass({
   mixins: [PureRenderMixin],
 
-  render: function() {
 
+  render: function() {
+  console.log(width);
     return (
       <View style={styles.container}>
       	<Text style={styles.date}>{this.props.date}</Text>
+
+
+        <View style={styles.map}>
+          <Map></Map>
+        </View>
       </View>
+
     );
   }
 });
@@ -34,7 +48,7 @@ var styles = StyleSheet.create({
 		color: '#737373',
     	fontFamily: 'Avenir',
     	fontSize: 20,
-    	fontWeight: "300",
+    	fontWeight: "500",
     	lineHeight: 27,
       textAlign: 'center'
 	},
@@ -43,7 +57,16 @@ var styles = StyleSheet.create({
 		color: 'black',
     	fontFamily: 'Avenir',
     	fontSize: 12,
-	}
+	},
+
+  map: {
+    width: (width * .4),
+    height: (height * .22),
+    position: 'absolute',
+    right: 10,
+    top: 30,
+
+  },
 });
 
 module.exports = Description

@@ -24,7 +24,7 @@ var JoinButton = React.createClass({
       <View style={styles.container}>
         <TouchableWithoutFeedback style={styles.container} onPress={this.handleGoing}>
           <View style={styles.container}>
-            <Text style={styles.text}>Join</Text>
+            <Text style={styles.text}>Member Finder</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -39,7 +39,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    backgroundColor: '#D2915F',
+    backgroundColor: '#00A4C5',
     height: 40
   },
 

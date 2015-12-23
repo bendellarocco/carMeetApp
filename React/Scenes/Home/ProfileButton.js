@@ -10,6 +10,7 @@ var {
   Image,
   View,
   TouchableWithoutFeedback,
+  Navigator,
 } = React;
 
 var Profile = require('./Profile');
@@ -18,7 +19,6 @@ var ProfileButton = React.createClass({
   mixins: [PureRenderMixin],
 
   onProfilePress: function () {
-    console.log('pressed');
     this.props.navigator.push({component:Profile});
   },
 
@@ -40,7 +40,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    backgroundColor: '#D2915F',
+    backgroundColor: '#00A4C5',
     height: 40
   },
 
@@ -53,7 +53,7 @@ var styles = StyleSheet.create({
   text: {
     color: '#FFFFFF',
     fontFamily: 'Avenir',
-    fontSize: 18
+    fontSize: 16
   }
 });
 
