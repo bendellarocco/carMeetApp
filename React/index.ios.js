@@ -3,7 +3,8 @@
 var React = require('react-native');
 var BackgroundGeolocation = require('react-native-background-geolocation');
 var HomeScene = require('./Scenes/Home');
-// var RestrictedComponent = require('./Mixins/RestrictedComponent');
+var RestrictedComponent = require('./Mixins/RestrictedComponent');
+var UserStore = require('./Stores/User');
 
 var {
   AppRegistry,
@@ -17,11 +18,19 @@ var Meetups = React.createClass({
     return {
       route: {
         component: HomeScene
-      }
+      },
+
+      user: false
     };
   },
 
+  handleUserChange: function() {
+      this.setState({ user: UserStore.getState() });
+  },
+
   componentDidMount: function() {
+    UserStore.listen(this.handleUserChange);
+
     // BackgroundGeolocation.configure({
     //   desiredAccuracy: 0,
     //   stationaryRadius: 50,
@@ -78,14 +87,57 @@ var Meetups = React.createClass({
     // });
   },
 
+  componentWillUnmount() {
+    UserStore.unlisten(this.handleUserChange);
+  },
+
+  componentDidUpdate: function() {
+    if (this.props.user && this.props.user.credentials && this.state.userData === false) {
+      this.requestName(this.props.user.credentials);
+      this.requestPhoto(this.props.user.credentials);
+    }
+  },
+
+  requestName: function(user) {
+    var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,about&access_token=${user.token}`;
+
+    fetch(api)
+      .then((response) => response.json())
+      .then((response) => {
+        var user = this.state.userData === false ? {} : this.state.userData;
+        this.setState(Object.assign(this.state, {
+          userData: Object.assign(user, {
+            name: response.name,
+            id: response.id
+          })
+        }));
+      })
+      .done();
+  },
+
+  requestPhoto: function(user) {
+    var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?type=large&redirect=0&access_token=${user.token}`;
+    fetch(api)
+      .then((response) => response.json())
+      .then((response) => {
+        var user = this.state.userData === false ? {} : this.state.userData;
+        this.setState(Object.assign(this.state, {
+          userData: Object.assign(user, {
+            photo: response.data.url
+          })
+        }));
+      })
+      .done();
+  },
+
   render: function() {
-    console.log('App', 'render');
+    console.log('App', 'render', this.state);
     return (
       <View style={styles.container}>
         <Navigator
           initialRoute={this.state.route}
           renderScene={(route, navigator) => {
-            return <route.component user={this.props.user} route={route} navigator={navigator} />;
+            return <route.component user={this.state.userData} route={route} navigator={navigator} />;
           }} />
       </View>
     );
@@ -98,5 +150,5 @@ var styles = StyleSheet.create({
   }
 });
 
-// AppRegistry.registerComponent('Meetups', () => RestrictedComponent(Meetups));
-AppRegistry.registerComponent('Meetups', () => Meetups);
+AppRegistry.registerComponent('Meetups', () => RestrictedComponent(Meetups));
+// AppRegistry.registerComponent('Meetups', () => Meetups);

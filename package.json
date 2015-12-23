@@ -17,7 +17,7 @@
     "react-native-fbsdkcore": "0.0.6",
     "react-native-fbsdklogin": "0.0.6",
     "react-native-mapbox-gl": "^1.1.0",
-    "react-native-navbar": "^1.0.3",
+    "react-native-navbar": "1.0.3",
     "reactfire": "^0.5.1"
   }
 }

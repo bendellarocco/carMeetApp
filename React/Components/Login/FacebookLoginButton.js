@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var FBLoginManager = require('NativeModules').FBLoginManager;
+
 var {
   AppRegistry,
   StyleSheet,
@@ -16,7 +17,7 @@ var {width, height} = Dimensions.get('window');
 
 var FacebookLoginButton = React.createClass({
   handleLogin: function() {
-    FBLoginManager.login(function(error, data) {
+    FBLoginManager.loginWithPermissions(['email', 'public_profile'], function(error, data) {
 
     }.bind(this));
   },

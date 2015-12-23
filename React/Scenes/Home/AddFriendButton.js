@@ -2,7 +2,6 @@
 
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
-var NavigationBar = require('react-native-navbar');
 
 var {
   StyleSheet,

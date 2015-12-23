@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
+var FBLoginManager = require('NativeModules').FBLoginManager;
 // var EventAction = require('../../Actions/Event');
 
 var {
@@ -17,6 +18,9 @@ var JoinButton = React.createClass({
 
   handleGoing: function() {
     // this.props.firebase.push({name: 'adam', age: 25});
+    FBLoginManager.logout(function(error, data){
+
+    });
   },
 
   render: function() {
