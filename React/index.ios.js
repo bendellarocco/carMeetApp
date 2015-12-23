@@ -7,11 +7,39 @@ var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var UserStore = require('./Stores/User');
 
 var {
+  DeviceEventEmitter,
   AppRegistry,
   StyleSheet,
   Navigator,
   View
 } = React;
+
+var { RNLocation: Location } = require('NativeModules');
+
+Location.requestAlwaysAuthorization();
+Location.startUpdatingLocation();
+Location.setDistanceFilter(5.0);
+
+var subscription = DeviceEventEmitter.addListener(
+    'locationUpdated',
+    (location) => {
+      console.log(location);
+        /* Example location returned
+        {
+          coords: {
+            speed: -1,
+            longitude: -0.1337,
+            latitude: 51.50998,
+            accuracy: 5,
+            heading: -1,
+            altitude: 0,
+            altitudeAccuracy: -1
+          },
+          timestamp: 1446007304457.029
+        }
+        */
+    }
+);
 
 var Meetups = React.createClass({
   getInitialState: function () {
@@ -25,7 +53,8 @@ var Meetups = React.createClass({
   },
 
   handleUserChange: function() {
-      this.setState({ user: UserStore.getState() });
+    console.log('user store change', UserStore.getState());
+      // this.setState({ user: UserStore.getState() });
   },
 
   componentDidMount: function() {
