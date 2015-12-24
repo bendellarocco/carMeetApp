@@ -62,9 +62,7 @@ var LoginScene = React.createClass({
             }]
           }}>
             <FacebookLoginButton {...this.props} />
-             <BlurView blurType='dark' style={styles.loginContainer}>
-              <Message />
-            </BlurView>
+            <Message />
           </Animated.View>
         </Image>
       </View>

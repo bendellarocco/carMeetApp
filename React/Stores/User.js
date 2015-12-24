@@ -9,27 +9,28 @@ var STORAGE_KEY = '@UserStore';
 
 class UserStore {
   constructor() {
-    this.data = {
-      authenticated: false,
-      user: {}
-    };
+    this.data = null;
 
     this.bindListeners({
-      handleLogin: UserActions.DO_LOGIN
+      handleLogin: UserActions.DID_LOGIN,
+      handleLogout: UserActions.DID_LOGOUT
     });
 
     AsyncStorage.getItem(STORAGE_KEY, function(err, data) {
       if (!err && data) {
-        UserActions.handleLogin(JSON.parse(data));
+        UserActions.didLogin(JSON.parse(data));
       }
     });
   }
 
   handleLogin(user) {
-    this.data = {
-      authenticated: true,
-      user: user
-    };
+    this.data = user;
+
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
+  }
+
+  handleLogout() {
+    this.data = null;
 
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
   }

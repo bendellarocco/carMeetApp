@@ -71,7 +71,7 @@ var HomeScene = React.createClass({
           width: width,
 
         }}>
-          <Event />
+          <Event user={this.props.user} />
         </Animated.View>
 
         <Animated.View style={{

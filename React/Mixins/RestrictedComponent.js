@@ -5,6 +5,8 @@ var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var FBLoginManager = require('NativeModules').FBLoginManager;
 var LoginScene = require('../Components/Login');
 var UserActions = require('../Actions/User');
+var FacebookSource = require('../Sources/Facebook');
+var SHA256 = require("crypto-js/sha256");
 
 var {
   StyleSheet,
@@ -25,80 +27,94 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = function (Component) {
-  var AuthComponent = React.createClass({
+module.exports = React.createClass({
 
-    getInitialState: function() {
-      return {
-        subscriptions: [],
-        loading: true,
-        session: null
-      };
-    },
+  getInitialState: function() {
+    return {
+      subscriptions: [],
+      loading: false,
+      mounted: false
+    };
+  },
 
-    componentWillMount: function(){
-      var subscriptions = this.state.subscriptions;
+  componentWillMount: function(){
+    var subscriptions = this.state.subscriptions;
 
-      Object.keys(FBLoginManager.Events).forEach(function(event) {
-        subscriptions.push(RCTDeviceEventEmitter.addListener(
-          FBLoginManager.Events[event],
-          function(eventData) {
-            var eventHandler = this['on' + event];
-            eventHandler && eventHandler(eventData);
-          }.bind(this)
-        ));
-      }.bind(this));
+    Object.keys(FBLoginManager.Events).forEach(function(event) {
+      subscriptions.push(RCTDeviceEventEmitter.addListener(
+        FBLoginManager.Events[event],
+        function(eventData) {
+          var eventHandler = this['on' + event];
+          eventHandler && eventHandler(eventData);
+        }.bind(this)
+      ));
+    }.bind(this));
 
-      this.setState(Object.assign(this.state, {subscriptions : subscriptions}));
-    },
+    this.setState(Object.assign(this.state, {subscriptions : subscriptions}));
+  },
 
-    componentWillUnmount: function(){
-      var subscriptions = this.state.subscriptions;
-      subscriptions.forEach(function(subscription){
-        subscription.remove();
+  componentWillUnmount: function(){
+    var subscriptions = this.state.subscriptions;
+
+    subscriptions.forEach(function(subscription){
+      subscription.remove();
+    });
+  },
+
+  componentDidMount: function(){
+    this.setState(Object.assign(this.state, {mounted: true}));
+
+    FBLoginManager.getCredentials(function(err, data) {
+      if (!err) {
+        this.requestFacebookProfile(data).then((user) => {
+          UserActions.didLogin(user);
+        }).catch((err) => {
+          console.error('requestFacebookProfile error', err);
+        });
+      }
+    }.bind(this));
+  },
+
+  onLogin: function(data) {
+    // console.log('login', data);
+    // could set loading to true here then false inside bellow callback if we want a loading icon while logging in
+    this.requestFacebookProfile(data).then((user) => {
+      UserActions.didLogin(user);
+    });
+  },
+
+  onLogout: function() {
+    // console.log('logout');
+  },
+
+  onLoginNotFound: function() {
+    // console.log('loginNotFound');
+  },
+
+  requestFacebookProfile(session) {
+    return new Promise((resolve, reject) => {
+      Promise.all([FacebookSource.basicInfo(session), FacebookSource.profilePhoto(session)]).then((data) => {
+        var info = data[0];
+        var photo = data[1];
+        var userId = SHA256(info.email).toString();
+        resolve(Object.assign(info, { photo, id: userId }));
+      }).catch((err) => {
+        console.error('FacebookSource error', err);
       });
-    },
+    });
+  },
 
-    componentDidMount: function(){
-      FBLoginManager.getCredentials(function(err, data) {
-        if (!err) {
-          this.setState(Object.assign(this.state, {session: data, loading: false}));
-        } else {
-          this.setState(Object.assign(this.state, {loading: false, session: null}));
-        }
-      }.bind(this));
-       this.setState(Object.assign(this.state, {loading: false, session: {id: 1, name: 'Adam'}}));
-    },
-
-    onLogin: function(data) {
-      // console.log('login', data);
-      this.setState(Object.assign(this.state, {session: data}), () => {
-        UserActions.onLogin(data);
-      });
-    },
-
-    onLogout: function() {
-      // console.log('logout');
-    },
-
-    onLoginNotFound: function() {
-      // console.log('loginNotFound');
-    },
-
-    render: function() {
-      return (
-        <View style={styles.container}>
-          <Modal
-            animated={true}
-            transparent={true}
-            visible={this.state.session === null && !this.state.loading}>
-            <LoginScene />
-          </Modal>
-          <Component {...this.props} />
-        </View>
-      );
-    }
-  });
-
-  return AuthComponent;
-};
+  render: function() {
+    return (
+      <View style={styles.container}>
+        <Modal
+          animated={false}
+          transparent={false}
+          visible={this.props.user === null && this.state.mounted}>
+          <LoginScene />
+        </Modal>
+        {this.props.children}
+      </View>
+    );
+  }
+});

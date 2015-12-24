@@ -75,13 +75,13 @@ var styles = StyleSheet.create({
     fontSize: 14,
     marginRight: 26,
     fontWeight: '700',
-    textAlign: 'right',
+    // textAlign: 'right',
     color: '#ABABAB',
     fontFamily: 'Avenir',
   },
 
   go: {
-    textAlign: 'left',
+    // textAlign: 'left',
   }
 });
 

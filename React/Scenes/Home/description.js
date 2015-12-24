@@ -26,7 +26,7 @@ var Description = React.createClass({
     return (
       <View style={styles.container}>
       	<Text style={styles.date}>{this.props.date}</Text>
-
+        	<Text style={{fontFamily: 'Avenir', fontSize: 10}}>{JSON.stringify(this.props.user)}</Text>
 
         <View style={styles.map}>
           <Map></Map>
@@ -50,7 +50,7 @@ var styles = StyleSheet.create({
     	fontSize: 20,
     	fontWeight: "500",
     	lineHeight: 27,
-      textAlign: 'center'
+      // textAlign: 'center'
 	},
 
 	text: {

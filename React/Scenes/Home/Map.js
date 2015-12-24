@@ -12,8 +12,6 @@ var {
   View
 } = React;
 
-var mapRef = 'mapRef';
-
 var MapExample = React.createClass({
   mixins: [Mapbox.Mixin, PureRenderMixin],
 
@@ -74,22 +72,24 @@ var MapExample = React.createClass({
   },
 
   onRegionWillChange(location) {
-
+    // console.log(location);
   },
 
   onUpdateUserLocation(location) {
-
+    // console.log(location);
   },
 
   onOpenAnnotation(annotation) {
-
+    // console.log(annotation);
   },
 
   onRightAnnotationTapped(e) {
-
+    // console.log(e);
   },
 
   render: function() {
+    var mapRef = 'mapRef';
+    // console.log('Scenes/Home/Map', 'render');
     StatusBarIOS.setHidden(true);
     return (
       <View style={styles.container}>
@@ -133,10 +133,6 @@ var styles = StyleSheet.create({
   },
 
   mapLinks: {
-    color: '#737373',
-    fontFamily: 'Avenir',
-    fontSize: 12,
-    fontWeight: "700",
     flexDirection: 'row',
     justifyContent: 'center'
   }

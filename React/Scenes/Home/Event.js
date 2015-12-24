@@ -51,7 +51,7 @@ var Content = React.createClass ({
 			<View style={styles.content}>
         <Banner image={this.state.event.banner} />
         <View style={styles.description}>
-          <Description date={this.state.event.date} />
+          <Description date={this.state.event.date} user={this.props.user} />
         </View>
       	<View style={styles.guestArea}>
         	<GuestInfo going={this.state.event.going} />

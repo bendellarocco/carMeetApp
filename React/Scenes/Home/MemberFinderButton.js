@@ -2,7 +2,13 @@
 
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
+<<<<<<< 5b096a2e52380c6072bc52a526139e8407996866
 // var NavigationBar = require('react-native-navbar');
+=======
+var UserActions = require('../../Actions/User');
+var FBLoginManager = require('NativeModules').FBLoginManager;
+// var EventAction = require('../../Actions/Event');
+>>>>>>> login changes
 
 var {
   StyleSheet,
@@ -19,7 +25,10 @@ var MemberFinderButton = React.createClass({
   mixins: [PureRenderMixin],
 
   onMemberFinderPress: function () {
-    this.props.navigator.push({component:MemberFinder});
+    // this.props.firebase.push({name: 'adam', age: 25});
+    FBLoginManager.logout(function(error, data){
+      UserActions.didLogout();
+    });
   },
 
   render: function() {

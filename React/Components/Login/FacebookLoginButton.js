@@ -17,6 +17,7 @@ var {width, height} = Dimensions.get('window');
 
 var FacebookLoginButton = React.createClass({
   handleLogin: function() {
+    console.log('handle login');
     FBLoginManager.loginWithPermissions(['email', 'public_profile'], function(error, data) {
 
     }.bind(this));
