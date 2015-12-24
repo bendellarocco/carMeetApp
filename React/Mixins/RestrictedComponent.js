@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+import clone from 'lodash/lang/clone';
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var FBLoginManager = require('NativeModules').FBLoginManager;
 var LoginScene = require('../Components/Login');
@@ -97,7 +98,12 @@ module.exports = React.createClass({
         var info = data[0];
         var photo = data[1];
         var userId = SHA256(info.email).toString();
-        resolve(Object.assign(info, { photo, id: userId }));
+        var data = Object.assign(info, { photo });
+        resolve(Object.assign(data, {
+          id: userId,
+          facebook: Object.assign(clone(data), { session }),
+          version: 1
+        }));
       }).catch((err) => {
         console.error('FacebookSource error', err);
       });
