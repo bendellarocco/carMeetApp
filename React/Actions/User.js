@@ -1,4 +1,5 @@
 var alt = require('../alt');
+var Firebase = require('../firebase');
 
 class UserActions {
   constructor() {
@@ -6,12 +7,15 @@ class UserActions {
   }
 
   didLogin(user) {
-    this.dispatch(user);
-
-
-    // setTimeout(() => {
-    //   this.actions.didLogout();
-    // }, 5000);
+    Firebase.child('profiles').child(user.id).once('value', (snapshot) => {
+      if (snapshot.exists()) {
+        this.dispatch(snapshot.val());
+      } else {
+        snapshot.ref().set(user, () => {
+          this.dispatch(user);
+        });
+      }
+    });
   }
 }
 

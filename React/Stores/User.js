@@ -1,6 +1,7 @@
 var React = require('react-native');
 var alt = require('../alt');
 var UserActions = require('../Actions/User');
+var Firebase = require('../firebase');
 var {
   AsyncStorage
 } = React;
@@ -21,6 +22,7 @@ class UserStore {
     //     UserActions.didLogin(JSON.parse(data));
     //   }
     // });
+
   }
 
   handleLogin(user) {
