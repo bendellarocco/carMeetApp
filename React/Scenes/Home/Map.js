@@ -74,23 +74,22 @@ var MapExample = React.createClass({
   },
 
   onRegionWillChange(location) {
-    console.log(location);
+
   },
 
   onUpdateUserLocation(location) {
-    console.log(location);
+
   },
 
   onOpenAnnotation(annotation) {
-    console.log(annotation);
+
   },
 
   onRightAnnotationTapped(e) {
-    console.log(e);
+
   },
 
   render: function() {
-    console.log('Scenes/Home/Map', 'render');
     StatusBarIOS.setHidden(true);
     return (
       <View style={styles.container}>

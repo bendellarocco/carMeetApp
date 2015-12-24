@@ -5,6 +5,7 @@ var BackgroundGeolocation = require('react-native-background-geolocation');
 var HomeScene = require('./Scenes/Home');
 var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var UserStore = require('./Stores/User');
+var Firebase = require('firebase');
 
 var {
   DeviceEventEmitter,
@@ -16,14 +17,14 @@ var {
 
 var { RNLocation: Location } = require('NativeModules');
 
-Location.requestAlwaysAuthorization();
+Location.requestWhenInUseAuthorization();
 Location.startUpdatingLocation();
 Location.setDistanceFilter(5.0);
 
 var subscription = DeviceEventEmitter.addListener(
     'locationUpdated',
     (location) => {
-      console.log(location);
+
         /* Example location returned
         {
           coords: {
@@ -38,7 +39,17 @@ var subscription = DeviceEventEmitter.addListener(
           timestamp: 1446007304457.029
         }
         */
-    }
+        var obj = {
+          speed: location.coords.speed,
+          longitude: location.coords.longitude,
+          latitude: location.coords.latitude,
+          accuracy: location.coords.accuracy,
+          heading: location.coords.heading,
+          altitude: location.coords.altitude,
+          altitudeAccuracy: location.coords.altitudeAccuracy,
+        };
+    },
+
 );
 
 var Meetups = React.createClass({
@@ -160,7 +171,6 @@ var Meetups = React.createClass({
   },
 
   render: function() {
-    console.log('App', 'render', this.state);
     return (
       <View style={styles.container}>
         <Navigator

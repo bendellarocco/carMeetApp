@@ -5,6 +5,7 @@ var PureRenderMixin = require('react-addons-pure-render-mixin');
 var ReactFireMixin = require('reactfire');
 var _ = require('lodash');
 var NavigationBar = require('react-native-navbar');
+var geoFire = require('geofire');
 
 var {
   Text,
