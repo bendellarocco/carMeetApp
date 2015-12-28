@@ -13,7 +13,7 @@ var {
   Navigator
 } = React;
 
-var Profile = require('./Profile');
+var Profile = require('../Profile');
 
 var ProfileButton = React.createClass({
   mixins: [PureRenderMixin],

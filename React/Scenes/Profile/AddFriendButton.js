@@ -11,7 +11,7 @@ var {
   TouchableWithoutFeedback,
 } = React;
 
-var Profile = require('./Profile');
+var Profile = require('./');
 
 var ProfileButton = React.createClass({
   mixins: [PureRenderMixin],

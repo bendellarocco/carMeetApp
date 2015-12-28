@@ -18,7 +18,7 @@ var {
 } = React;
 
 var Firebase = require('../../firebase');
-var AddFriend = require('./AddFriendButton');
+var AddFriend = require('../Profile/AddFriendButton');
 var HomeScene = require('./index');
 
 var {

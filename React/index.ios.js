@@ -3,6 +3,7 @@
 var React = require('react-native');
 import isNull from 'lodash/lang/isNull';
 var HomeScene = require('./Scenes/Home');
+var MapScene = require('./Scenes/Home');
 var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var UserStore = require('./Stores/User');
 var Firebase = require('./firebase');
@@ -22,9 +23,7 @@ var obj ={
     latitude: 10,
 }
 
-var geoFire = new GeoFire(Firebase);
-
-geoFire.set("some_key", [obj.latitude, obj.longitude])
+var geoFire = new GeoFire(Firebase.child('locations'));
 
 Location.requestWhenInUseAuthorization();
 Location.startUpdatingLocation();
@@ -60,6 +59,8 @@ var subscription = DeviceEventEmitter.addListener(
       if (!isNull(UserStore.getState())) {
         console.log('storing location as', obj);
         //geoFire.set(Firebase.child('profiles').child(UserStore.getState().id), [obj.latitude, obj.longitude])
+
+        geoFire.set(UserStore.getState().id, [obj.latitude, obj.longitude]);
       }
   }
 );
@@ -69,7 +70,7 @@ var Meetups = React.createClass({
     return {
       user: UserStore.getState(),
       route: {
-        component: HomeScene
+        component: MapScene
       }
     };
   },

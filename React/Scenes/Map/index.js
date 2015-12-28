@@ -3,23 +3,37 @@
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
 var Mapbox = require('react-native-mapbox-gl');
+var GeoFire = require('geofire');
+var firebase = require('../../firebase');
+var geoFire = new GeoFire(firebase);
+
+var geoQuery = geoFire.query({
+  center: [37.78, -122.40],
+  radius: 10.5
+});
 
 var {
   AppRegistry,
+  Dimensions,
   StyleSheet,
   Text,
   StatusBarIOS,
   View
 } = React;
 
-var MapExample = React.createClass({
+var {
+  width,
+  height,
+} = Dimensions.get('window');
+
+var Map = React.createClass({
   mixins: [Mapbox.Mixin, PureRenderMixin],
 
   getInitialState() {
     return {
       center: {
-        latitude: 42.3410426,
-        longitude: -71.545528
+        latitude: 37.785834,
+        longitude: -122.406417
       },
       zoom: 11,
       annotations: [{
@@ -67,6 +81,10 @@ var MapExample = React.createClass({
      };
   },
 
+  componentDidMount() {
+
+  },
+
   onRegionChange(location) {
     this.setState({ currentZoom: location.zoom });
   },
@@ -88,9 +106,8 @@ var MapExample = React.createClass({
   },
 
   render: function() {
-    var mapRef = 'mapRef';
     // console.log('Scenes/Home/Map', 'render');
-    StatusBarIOS.setHidden(true);
+
     return (
       <View style={styles.container}>
 
@@ -101,7 +118,7 @@ var MapExample = React.createClass({
           scrollEnabled={true}
           zoomEnabled={true}
           showsUserLocation={true}
-          ref={mapRef}
+          ref='map'
           accessToken={'pk.eyJ1IjoiYWRhbWp2OTAiLCJhIjoiY2lmNGJvd3h2MDFoZXN0a3BibmJ3aHBoNCJ9.8yol40r02rquguPnttJGxQ'}
           styleURL={'asset://styles/streets-v8.json'}
           centerCoordinate={this.state.center}
@@ -113,11 +130,6 @@ var MapExample = React.createClass({
           onOpenAnnotation={this.onOpenAnnotation}
           onRightAnnotationTapped={this.onRightAnnotationTapped}
           onUpdateUserLocation={this.onUpdateUserLocation} />
-
-
-        <View style={styles.mapLinks}>
-          <Text style={styles.mapLinks}>Meet</Text><Text style={styles.mapLinks}> | </Text><Text style={styles.mapLinks}>Cruise</Text>
-        </View>
       </View>
     );
   }
@@ -125,12 +137,11 @@ var MapExample = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex:1,
-    flexDirection: 'column'
+    flex:1
   },
   map: {
-    flex: 1,
+    width, height
   }
 });
 
-module.exports = MapExample;
+module.exports = Map;

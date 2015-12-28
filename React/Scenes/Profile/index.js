@@ -19,7 +19,7 @@ var {
 
 var Firebase = require('../../firebase');
 var AddFriend = require('./AddFriendButton');
-var HomeScene = require('./index');
+var HomeScene = require('../Home');
 
 var {
   width,
