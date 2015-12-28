@@ -7,6 +7,7 @@ var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var UserStore = require('./Stores/User');
 var Firebase = require('firebase');
 var firebase = require('./firebase');
+var { RNLocation: Location } = require('NativeModules');
 
 var {
   DeviceEventEmitter,
@@ -15,6 +16,44 @@ var {
   Navigator,
   View
 } = React;
+
+Location.requestWhenInUseAuthorization();
+Location.startUpdatingLocation();
+Location.setDistanceFilter(5.0);
+
+var subscription = DeviceEventEmitter.addListener(
+  'locationUpdated',
+  (location) => {
+    console.log(location);
+      /* Example location returned
+      {
+        coords: {
+          speed: -1,
+          longitude: -0.1337,
+          latitude: 51.50998,
+          accuracy: 5,
+          heading: -1,
+          altitude: 0,
+          altitudeAccuracy: -1
+        },
+        timestamp: 1446007304457.029
+      }
+      */
+      var obj = {
+        speed: location.coords.speed,
+        longitude: location.coords.longitude,
+        latitude: location.coords.latitude,
+        accuracy: location.coords.accuracy,
+        heading: location.coords.heading,
+        altitude: location.coords.altitude,
+        altitudeAccuracy: location.coords.altitudeAccuracy,
+      };
+      if (!isNull(UserStore.getState())) {
+        console.log('storing location as', obj);
+        // firebase.child('profiles').child(UserStore.getState().id).child('location').set(obj);
+      }
+  }
+);
 
 var Meetups = React.createClass({
   getInitialState: function () {
@@ -39,47 +78,7 @@ var Meetups = React.createClass({
   },
 
   componentWillMount: function() {
-    console.log(this.state.user);
-    var { RNLocation: Location } = require('NativeModules');
 
-    Location.requestWhenInUseAuthorization();
-    Location.startUpdatingLocation();
-    Location.setDistanceFilter(5.0);
-
-    var subscription = DeviceEventEmitter.addListener(
-    'locationUpdated',
-    (location) => {
-      console.log(location);
-        /* Example location returned
-        {
-          coords: {
-            speed: -1,
-            longitude: -0.1337,
-            latitude: 51.50998,
-            accuracy: 5,
-            heading: -1,
-            altitude: 0,
-            altitudeAccuracy: -1
-          },
-          timestamp: 1446007304457.029
-        }
-        */
-        var obj = {
-          speed: location.coords.speed,
-          longitude: location.coords.longitude,
-          latitude: location.coords.latitude,
-          accuracy: location.coords.accuracy,
-          heading: location.coords.heading,
-          altitude: location.coords.altitude,
-          altitudeAccuracy: location.coords.altitudeAccuracy,
-        };
-        if (!isNull(UserStore.getState())) {
-          console.log('storing location as', obj);
-          //firebase.child('profiles').child(this.state.user.id).child('location').set(obj);
-        }
-    },
-
-);
   },
 
   render: function() {
