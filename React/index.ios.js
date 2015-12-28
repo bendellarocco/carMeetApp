@@ -5,8 +5,8 @@ import isNull from 'lodash/lang/isNull';
 var HomeScene = require('./Scenes/Home');
 var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var UserStore = require('./Stores/User');
-var Firebase = require('firebase');
-var firebase = require('./firebase');
+var Firebase = require('./firebase');
+var GeoFire = require('geofire');
 var { RNLocation: Location } = require('NativeModules');
 
 var {
@@ -14,8 +14,17 @@ var {
   AppRegistry,
   StyleSheet,
   Navigator,
-  View
+  View,
 } = React;
+
+var obj ={
+    longitude: 8,
+    latitude: 10,
+}
+
+var geoFire = new GeoFire(Firebase);
+
+geoFire.set("some_key", [obj.latitude, obj.longitude])
 
 Location.requestWhenInUseAuthorization();
 Location.startUpdatingLocation();
@@ -39,7 +48,7 @@ var subscription = DeviceEventEmitter.addListener(
         timestamp: 1446007304457.029
       }
       */
-      var obj = {
+      obj = {
         speed: location.coords.speed,
         longitude: location.coords.longitude,
         latitude: location.coords.latitude,
@@ -50,7 +59,7 @@ var subscription = DeviceEventEmitter.addListener(
       };
       if (!isNull(UserStore.getState())) {
         console.log('storing location as', obj);
-        // firebase.child('profiles').child(UserStore.getState().id).child('location').set(obj);
+        //geoFire.set(Firebase.child('profiles').child(UserStore.getState().id), [obj.latitude, obj.longitude])
       }
   }
 );
