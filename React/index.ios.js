@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+import isNull from 'lodash/lang/isNull';
 var HomeScene = require('./Scenes/Home');
 var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var UserStore = require('./Stores/User');
@@ -48,6 +49,7 @@ var Meetups = React.createClass({
     var subscription = DeviceEventEmitter.addListener(
     'locationUpdated',
     (location) => {
+      console.log(location);
         /* Example location returned
         {
           coords: {
@@ -71,7 +73,10 @@ var Meetups = React.createClass({
           altitude: location.coords.altitude,
           altitudeAccuracy: location.coords.altitudeAccuracy,
         };
-      //firebase.child('profiles').child(this.state.user.id).child('location').set(obj);
+        if (!isNull(UserStore.getState())) {
+          console.log('storing location as', obj);
+          //firebase.child('profiles').child(this.state.user.id).child('location').set(obj);
+        }
     },
 
 );
