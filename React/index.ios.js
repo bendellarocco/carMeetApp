@@ -5,6 +5,7 @@ var HomeScene = require('./Scenes/Home');
 var RestrictedComponent = require('./Mixins/RestrictedComponent');
 var UserStore = require('./Stores/User');
 var Firebase = require('firebase');
+var firebase = require('./firebase');
 
 var {
   DeviceEventEmitter,
@@ -14,13 +15,37 @@ var {
   View
 } = React;
 
-var { RNLocation: Location } = require('NativeModules');
+var Meetups = React.createClass({
+  getInitialState: function () {
+    return {
+      user: UserStore.getState(),
+      route: {
+        component: HomeScene
+      }
+    };
+  },
 
-Location.requestWhenInUseAuthorization();
-Location.startUpdatingLocation();
-Location.setDistanceFilter(5.0);
+  handleUserChange: function() {
+    this.setState({ user: UserStore.getState() });
+  },
 
-var subscription = DeviceEventEmitter.addListener(
+  componentDidMount: function() {
+    UserStore.listen(this.handleUserChange);
+  },
+
+  componentWillUnmount() {
+    UserStore.unlisten(this.handleUserChange);
+  },
+
+  componentWillMount: function() {
+    console.log(this.state.user);
+    var { RNLocation: Location } = require('NativeModules');
+
+    Location.requestWhenInUseAuthorization();
+    Location.startUpdatingLocation();
+    Location.setDistanceFilter(5.0);
+
+    var subscription = DeviceEventEmitter.addListener(
     'locationUpdated',
     (location) => {
         /* Example location returned
@@ -46,30 +71,10 @@ var subscription = DeviceEventEmitter.addListener(
           altitude: location.coords.altitude,
           altitudeAccuracy: location.coords.altitudeAccuracy,
         };
+      //firebase.child('profiles').child(this.state.user.id).child('location').set(obj);
     },
 
 );
-
-var Meetups = React.createClass({
-  getInitialState: function () {
-    return {
-      user: UserStore.getState(),
-      route: {
-        component: HomeScene
-      }
-    };
-  },
-
-  handleUserChange: function() {
-    this.setState({ user: UserStore.getState() });
-  },
-
-  componentDidMount: function() {
-    UserStore.listen(this.handleUserChange);
-  },
-
-  componentWillUnmount() {
-    UserStore.unlisten(this.handleUserChange);
   },
 
   render: function() {

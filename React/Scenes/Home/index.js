@@ -13,6 +13,7 @@ var {
   TouchableWithoutFeedback,
   Dimensions,
   Navigator,
+  DeviceEventEmitter,
 } = React;
 
 var {

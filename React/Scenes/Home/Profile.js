@@ -8,6 +8,7 @@ var NavigationBar = require('react-native-navbar');
 
 var {
   Text,
+  Image,
   StyleSheet,
   View,
   Dimensions,
@@ -24,7 +25,6 @@ var {
   width,
   height,
 } = Dimensions.get('window');
-
 
 var Profile  = React.createClass({
   mixins: [PureRenderMixin, ReactFireMixin],
@@ -70,20 +70,22 @@ var Profile  = React.createClass({
 
       <View>
         <View style={styles.personalInfo}>
-          <Text style={styles.licenseText}>Ben</Text>
-          <Text style={styles.licenseText}>Dellarocco</Text>
+          <Text style={styles.licenseText}>{this.props.user.name}</Text>
           <Text style={styles.licenseText}>Marlborough, Massachusetts</Text>
         </View>
 
         <View style={styles.profileImage}>
-
+          <Image
+          style={{height: 75, width: 75}}
+          source={{uri: this.props.user.photo}}>
+        </Image>
         </View>
       </View>
 
       <View>
         <View style={styles.driverNum}>
             <Text style={styles.licenseTitle}>Driver Number:</Text>
-            <Text style={styles.licenseText}>1234567890</Text>
+            <Text style={styles.licenseText}>{this.props.user.facebook.id}</Text>
           </View>
 
           <View style={styles.joinDate}>
@@ -134,7 +136,6 @@ var styles = StyleSheet.create ({
   profileImage: {
     height: 75,
     width: 75,
-    backgroundColor: 'black',
     position: 'absolute',
     right: 5,
     top: 10,
