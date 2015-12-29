@@ -32,11 +32,7 @@ var MapExample = React.createClass({
           height: 25,
           width: 25
         },
-        annotationImage: {
-          url: 'https://cldup.com/CnRLZem9k9.png',
-          height: 25,
-          width: 25
-        },
+
         id: 'marker1'
       }, {
         coordinates: [40.714541341726175,-74.00579452514648],
@@ -114,10 +110,6 @@ var MapExample = React.createClass({
           onRightAnnotationTapped={this.onRightAnnotationTapped}
           onUpdateUserLocation={this.onUpdateUserLocation} />
 
-
-        <View style={styles.mapLinks}>
-          <Text style={styles.mapLinks}>Meet</Text><Text style={styles.mapLinks}> | </Text><Text style={styles.mapLinks}>Cruise</Text>
-        </View>
       </View>
     );
   }

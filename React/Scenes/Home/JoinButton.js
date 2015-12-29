@@ -3,7 +3,11 @@
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
 var FBLoginManager = require('NativeModules').FBLoginManager;
+var UserActions = require('../../Actions/User');
+var UserStore = require('../../Stores/User');
 // var EventAction = require('../../Actions/Event');
+
+var Firebase = require('../../firebase');
 
 var {
   StyleSheet,
@@ -19,14 +23,29 @@ var JoinButton = React.createClass({
   handleGoing: function() {
     // this.props.firebase.push({name: 'adam', age: 25});
     FBLoginManager.logout(function(error, data){
-
+      UserActions.didLogout();
     });
+
+  },
+
+  pressGoing: function() {
+    // this.props.firebase.push({name: 'adam', age: 25});
+    Firebase.child('event').child('going').child(UserStore.getState().id).once('value', function(snapshot) {
+      var exists = (snapshot.val() !== null);
+      if (exists == true) {
+        Firebase.child('event').child('going').child(UserStore.getState().id).set({});
+      }
+      else {
+        Firebase.child('event').child('going').child(UserStore.getState().id).set({going: true});
+      }
+      });
+
   },
 
   render: function() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback style={styles.container} onPress={this.handleGoing}>
+        <TouchableWithoutFeedback style={styles.container} onPress={this.pressGoing}>
           <View style={styles.container}>
             <Text style={styles.text}>Join</Text>
           </View>

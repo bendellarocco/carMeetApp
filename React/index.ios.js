@@ -58,7 +58,7 @@ var subscription = DeviceEventEmitter.addListener(
 EventStore.listen((event) => {
   var geoQuery = geoFire.query({
     center: [event.data.lat, event.data.long],
-    radius: 10.5
+    radius: 40 //25 miles
   });
 
   geoQuery.on('key_entered', function(id, location) {
@@ -117,7 +117,7 @@ var Meetups = React.createClass({
     return {
       user: UserStore.getState(),
       route: {
-        component: MapScene
+        component: HomeScene
       }
     };
   },

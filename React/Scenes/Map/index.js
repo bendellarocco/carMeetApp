@@ -3,8 +3,10 @@
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
 var Mapbox = require('react-native-mapbox-gl');
+var NavigationBar = require('react-native-navbar');
 
 var LocationsStore = require('../../Stores/Locations');
+var HomeScene = require('../Home/index');
 
 var {
   AppRegistry,
@@ -27,24 +29,18 @@ var Map = React.createClass({
     var locations = LocationsStore.getState().map((location) => {
       return {
         coordinates: location.location,
-        'type': 'point',
+        type: 'point',
         title: 'This is marker ' + location.id,
-        subtitle: 'It has a rightCalloutAccessory too',
+        subtitle: '',
         rightCalloutAccessory: {
           url: 'https://cldup.com/9Lp0EaBw5s.png',
           height: 25,
           width: 25
         },
-        annotationImage: {
-          url: 'https://cldup.com/CnRLZem9k9.png',
-          height: 25,
-          width: 25
-        },
+
         id: 'marker' + location.id
       };
     });
-
-  //   console.log(locations);
 
     return {
       center: {
@@ -85,23 +81,40 @@ var Map = React.createClass({
   },
 
   render: function() {
-    // console.log('Scenes/Home/Map', 'render');
+    const leftButtonConfig = {
+    title: '<',
+    tintColor: 'white',
+    handler: () => this.props.navigator.pop({component:HomeScene}),
+  };
+
+  const titleConfig = {
+    title: 'Member Finder',
+    tintColor: 'white',
+  };
 
     return (
       <View style={styles.container}>
 
+        <NavigationBar
+        statusBar={{style: 'light-content', hideAnimation: 'none', showAnimation: 'none', hidden: false}}
+        title={titleConfig}
+        leftButton={leftButtonConfig}
+        tintColor={'#00A4C5'}
+        style={styles.navbar}/>
+
         <Mapbox
           style={styles.map}
           direction={0}
-          rotateEnabled={true}
-          scrollEnabled={true}
-          zoomEnabled={true}
-          showsUserLocation={true}
+          rotateEnabled={false}
+          scrollEnabled={false}
+          zoomEnabled={false}
+          showsUserLocation={false}
+          logoIsHidden={true}
+          attributionButtonIsHidden={true}
           ref='map'
           accessToken={'pk.eyJ1IjoiYWRhbWp2OTAiLCJhIjoiY2lmNGJvd3h2MDFoZXN0a3BibmJ3aHBoNCJ9.8yol40r02rquguPnttJGxQ'}
           styleURL={'asset://styles/streets-v8.json'}
           centerCoordinate={this.state.center}
-          userLocationVisible={true}
           zoomLevel={this.state.zoom}
           onRegionChange={this.onRegionChange}
           onRegionWillChange={this.onRegionWillChange}
