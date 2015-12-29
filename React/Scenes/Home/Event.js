@@ -2,8 +2,17 @@
 
 var React = require('react-native');
 var PureRenderMixin = require('react-addons-pure-render-mixin');
-var ReactFireMixin = require('reactfire');
 var _ = require('lodash');
+var ReactFireMixin = require('reactfire');
+
+var Firebase = require('../../firebase');
+
+var EventStore = require('../../Stores/Event');
+var EventActions = require('../../Actions/Event');
+
+var Banner = require('./Banner');
+var Description = require('./Description');
+var GuestInfo = require('./GuestInfo');
 
 var {
   Text,
@@ -20,26 +29,32 @@ var {
   height,
 } = Dimensions.get('window');
 
-var Firebase = require('../../firebase');
-var Banner = require('./Banner');
-var Description = require('./Description');
-var GuestInfo = require('./GuestInfo');
-
 var Content = React.createClass ({
-  mixins: [PureRenderMixin, ReactFireMixin],
+  mixins: [PureRenderMixin],
 
   getInitialState: function() {
     return {
+      event: EventStore.getState()
+    };
+  },
 
+  componentDidMount: function() {
+  //  this.bindAsObject(Firebase.child('event'), 'event');
+    EventStore.listen(this.handleChange);
+    Firebase.child('event').on('value', this.loadEvent);
+  },
+
+  handleChange: function(event) {
+      this.setState(this.getInitialState());
+  },
+
+  loadEvent: function(snapshot) {
+    if (snapshot.exists()) {
+      EventActions.didLoad(snapshot.val());
     }
   },
 
-  componentWillMount: function() {
-    this.bindAsObject(Firebase.child('event'), 'event');
-  },
-
 	render: function() {
-
     if (_.isNull(this.state) || _.isUndefined(this.state.event)) {
       return (
         <View style={styles.container}>
@@ -47,6 +62,7 @@ var Content = React.createClass ({
         </View>
       );
     }
+
 		return (
 			<View style={styles.content}>
         <Banner image={this.state.event.banner} />

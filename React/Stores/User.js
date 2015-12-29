@@ -17,11 +17,11 @@ class UserStore {
       handleLogout: UserActions.DID_LOGOUT
     });
 
-    // AsyncStorage.getItem(STORAGE_KEY, function(err, data) {
-    //   if (!err && data) {
-    //     UserActions.didLogin(JSON.parse(data));
-    //   }
-    // });
+    AsyncStorage.getItem(STORAGE_KEY, (err, data) => {
+      if (!err && data) {
+        this.handleLogin(JSON.parse(data));
+      }
+    });
 
   }
 
